@@ -1,9 +1,61 @@
-// Variable overrides first
-$primary: #900;
-$enable-shadows: true;
-$prefix: "mo-";
 
-// Then import Bootstrap
 @import "../../node_modules/bootswatch/dist/quartz/variables";
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import "../../node_modules/bootswatch/dist/quartz/bootswatch";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@200;300;400;500;600&display=swap');
+
+$bgcolor: white;
+$bgimage: none;
+
+body {
+    background-image: $bgimage;
+    // background-color: $bgcolor;
+    min-width: 320px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Noto Sans Mono', monospace;
+    font-weight: 300;
+}
+
+p {
+    line-height: 28px;
+    margin-bottom: 25px;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+.form-switch {
+    .form-check-input {
+        height: 50px;
+        width: 150px;
+    }
+}
+
+.navbar {
+    .container {
+        width: 1200px;
+        // justify-content: space-between;
+    }
+    .navbar-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.card {
+    width: 256px;
+    min-width: 256px;
+}
+
+.col {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
