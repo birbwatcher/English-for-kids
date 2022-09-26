@@ -28,6 +28,7 @@
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {
-    "bootstrap": "^5.2.1"
+    "bootstrap": "^5.2.1",
+    "bootswatch": "^5.2.1"
   }
 }
