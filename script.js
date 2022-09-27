@@ -26,10 +26,20 @@ function createCard(cardImage, title) {
 
 console.log(cards[1]);
 
-function createCards() {
-    cards[2].forEach(function(item){
+function createCards(cardsSet) {
+    cards[cardsSet].forEach(function(item){
         createCard(item.image, item.word);
     })
 }
 
-createCards()
+createCards(3);
+
+document.querySelector('.form-check-input').onclick = function() {
+    let trainSwitch = document.querySelector('.switch');
+    trainSwitch.classList.toggle('switch-on');
+    if (trainSwitch.classList.contains('switch-on')) {
+        trainSwitch.innerHTML = "Train";
+    } else {
+        trainSwitch.innerHTML = "Play";
+    }
+}

@@ -36,22 +36,17 @@ hr {
         height: 50px;
         width: 150px;
     }
-    &:before {
-        font-size: 25px;
+    .switch {
         position: absolute;
-        content: "Play";
+        font-size: 25px;
         color: black;
-        top: 17%;
+        top: 32%;
         left: 40%;
         z-index: -1;
     }
-    &:after {
-        // font-size: 25px;
-        // position: absolute;
-        // content: "Train";
-        // top: 17%;
-        // left: 25%;
-        // z-index: -1;
+    .switch-on {
+        z-index: 0;
+        left: 25%;
     }
 }
 
@@ -80,10 +75,19 @@ hr {
         transition: 0.5s;
         cursor: pointer;
     }
+    .card-body {
+        h5 {
+            text-transform: capitalize;
+        }
+    }
 }
 
 .col {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+}
+
+.hide {
+    display: none;
 }
