@@ -4,12 +4,12 @@
 @import "../../node_modules/bootswatch/dist/quartz/bootswatch";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@200;300;400;500;600&display=swap');
 
-$bgcolor: white;
+$bgcolor: orange;
 $bgimage: none;
 
 body {
     background-image: $bgimage;
-    // background-color: $bgcolor;
+    background-color: $bgcolor;
     min-width: 320px;
 }
 
@@ -31,9 +31,27 @@ hr {
 }
 
 .form-switch {
+    position: relative;
     .form-check-input {
         height: 50px;
         width: 150px;
+    }
+    &:before {
+        font-size: 25px;
+        position: absolute;
+        content: "Play";
+        color: black;
+        top: 17%;
+        left: 40%;
+        z-index: -1;
+    }
+    &:after {
+        // font-size: 25px;
+        // position: absolute;
+        // content: "Train";
+        // top: 17%;
+        // left: 25%;
+        // z-index: -1;
     }
 }
 
@@ -47,11 +65,20 @@ hr {
         display: flex;
         justify-content: space-between;
     }
+    .navbar-toggler {
+        z-index: 1;
+    }
 }
 
 .card {
-    width: 256px;
+    // width: 256px;
     min-width: 256px;
+    transition: all 0.5s ease;
+    &:hover {
+        box-shadow: 0 20px 40px rgba(72,78,85,.6);
+        transform: translateY(-5px);
+        transition: 0.5s;
+    }
 }
 
 .col {
