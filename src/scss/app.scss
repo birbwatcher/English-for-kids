@@ -76,9 +76,19 @@ hr {
         cursor: pointer;
     }
     .card-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         h5 {
             text-transform: capitalize;
         }
+    }
+    .rotate {
+        align-self: flex-end;
+    }
+    button {
+        border: none;
+        background-color: transparent;
     }
 }
 
