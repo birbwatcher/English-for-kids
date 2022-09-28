@@ -1,12 +1,14 @@
 import cards from './data/cards.js';
 
 let cardsGrid = document.querySelector('.cards');
+let cardsItems = document.querySelectorAll('.card-body');
 
-function createCard(cardImage, title) {
+function createCard(cardImage, title, index) {
     let col = document.createElement('div');
     col.classList.add('col', 'col-sm-6', 'col-lg-4', 'col-xl-3');
     let card = document.createElement('div');
     card.classList.add('card');
+    card.id = index;
     let image = document.createElement('img');
     image.classList.add('card-img-top');
     let cardBody = document.createElement('div');
@@ -24,15 +26,7 @@ function createCard(cardImage, title) {
 }
 
 
-console.log(cards[1]);
-
-function createCards(cardsSet) {
-    cards[cardsSet].forEach(function(item){
-        createCard(item.image, item.word);
-    })
-}
-
-createCards(3);
+console.log(cards[0]);
 
 document.querySelector('.form-check-input').onclick = function() {
     let trainSwitch = document.querySelector('.switch');
@@ -42,4 +36,39 @@ document.querySelector('.form-check-input').onclick = function() {
     } else {
         trainSwitch.innerHTML = "Play";
     }
+}
+
+class BaseCard {
+    constructor(word, translation, image, audioSrc, id) {
+        this.word = word;
+        this.translation = translation;
+        this.image = image;
+        this.audioSrc = audioSrc;
+        this.id = id;
+    }
+    getWord(){
+        return this.word;
+    }
+    getCard(){
+        createCard(this.image, this.word, this.id)
+    }
+}
+
+let emotions = [];
+
+function createItems(cardsSet, classSet) {
+    cards[cardsSet].forEach(function(item, index){
+        let card = new BaseCard(item.word, item.translation, item.image, item.audioSrc, index)
+        classSet.push(card);
+    })
+}
+
+createItems(1,emotions)
+
+console.log(emotions);
+
+emotions.forEach(item => item.getCard())
+
+cardsGrid.onclick = function (e) {
+    console.log(this.id)
 }

@@ -16,6 +16,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Noto Sans Mono', monospace;
     font-weight: 300;
+    color: black;
 }
 
 p {
@@ -42,7 +43,6 @@ hr {
         color: black;
         top: 32%;
         left: 40%;
-        z-index: -1;
     }
     .switch-on {
         z-index: 0;
