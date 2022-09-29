@@ -67,7 +67,7 @@ hr {
 
 .card {
     // width: 256px;
-    position: relative;
+    // position: relative;
     min-width: 256px;
     transition: all 0.5s ease;
     &:hover {
@@ -93,37 +93,34 @@ hr {
             transition: 0.5s;
         }
     }
-    button {
-        border: none;
-        background-color: transparent;
-    }
-    // &.flipped {
-    //     transform: rotateY(180deg);
-    //     transition: 1s;
-    //     > .card-body-rotated {
-    //         transform: rotateY(180deg);
-    //         display: flex;
-    //         flex-direction: column;
-    //         align-items: center;
-    //         h5 {
-    //             text-transform: capitalize;
-    //         }
-    //     }
-
-    // }
-    .card-body-rotated {
-        // background-color: white;
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        display: none;
-        // backface-visibility: hidden;
+    &.front {
+        // display: none;
+        &.flipped {
         transform: rotateY(180deg);
+        transition: 1s;
+        backface-visibility: hidden;
+        }
+    }
+    &.back {
+        // display: none;
+        transform: rotateY(180deg);
+        transition: 1s;
+        padding-bottom: 30px;
+        backface-visibility: hidden;
+        &.unflipped {
+            transform: rotateY(0deg); 
+        }
     }
 }
 
+ .back {
+     position: absolute;
+     margin-right: calc(var(--bs-gutter-x) * .5);
+     margin-left: calc(var(--bs-gutter-x) * .5);
+ }
+
 .col {
+    position: relative;
     display: flex;
     justify-content: center;
     margin-bottom: 20px;

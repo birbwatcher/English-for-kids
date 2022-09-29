@@ -56,13 +56,16 @@ clothes.forEach(item => item.getCard())
 // }
 
 cardsGrid.addEventListener('click', function(e) {
+    console.log(e.target.parentNode.parentNode.id)
     if (e.target.classList.contains('rotate')) {
-        let index = e.target.parentNode.parentNode.id;
-        let cardsItems = document.querySelectorAll('.card');
-        cardsItems[index].classList.add('flipped')
+        let index = e.target.parentNode.parentNode.parentNode.id;
+        let cardsFrontItems = document.querySelectorAll('.front');
+        let cardsBackItems = document.querySelectorAll('.back');
+        cardsFrontItems[index].classList.add('flipped');
+        cardsBackItems[index].classList.add('unflipped');
     }
-    if (e.target.parentElement.classList.contains('card')) {
-        let index = e.target.parentElement.id;
+    if (e.target.parentElement.classList.contains('front')) {
+        let index = e.target.parentElement.parentElement.id;
         console.log(clothes[index].getWord())
     }
 })

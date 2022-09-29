@@ -3,9 +3,16 @@ import {cardsGrid} from "./script.js";
 export default function createCard(cardImage, title, index, translation) {
     let col = document.createElement('div');
     col.classList.add('col', 'col-sm-6', 'col-lg-4', 'col-xl-3');
-    let card = document.createElement('div');
-    card.classList.add('card');
-    card.id = index;
+    // let card = document.createElement('div');
+    // card.classList.add('card');
+
+    let front = document.createElement('div');
+    front.classList.add('card','front');
+
+    let back = document.createElement('div');
+    back.classList.add('card','back');
+
+    col.id = index;
     let image = document.createElement('img');
     image.classList.add('card-img-top');
     let cardBody = document.createElement('div');
@@ -22,11 +29,21 @@ export default function createCard(cardImage, title, index, translation) {
     cardTranslation.innerHTML = translation;
     image.src = './data/' + cardImage;
     cardsGrid.append(col);
-    card.append(image);
+
+    let imageFlipped = image.cloneNode(true);
+    
+    front.append(image);
     cardBody.append(cardTitle);
     cardBody.append(rotate);
+
+    front.append(cardBody);
+
+    back.append(imageFlipped);
     cardBodyRotated.append(cardTranslation);
-    card.append(cardBody);
-    card.append(cardBodyRotated);
-    col.append(card);
+    back.append(cardBodyRotated);
+
+    front.append
+    col.append(front);
+    col.append(back);
+    // col.append(card);
 }
