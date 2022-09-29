@@ -17,9 +17,9 @@ document.querySelector('.form-check-input').onclick = function() {
 }
 
 class Category {
-    constructor(name, id) {
+    constructor(name, id, image) {
         this.name = name;
-        // this.image = image;
+        this.image = image;
         this.id = id;
     }
     getCategory() {
@@ -52,30 +52,47 @@ function createCategory(cardImage, title, index) {
     let card = document.createElement('div');
     card.classList.add('card');
 
+    let image = document.createElement('img');
+    image.classList.add('card-img-top');
+
+    image.src = './data/' + cardImage;
+
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body','english');
     let cardTitle = document.createElement('h5');
     cardTitle.innerHTML = title;
     cardBody.append(cardTitle);
 
+    card.append(image);
     card.append(cardBody);
+
 
     col.append(card);
     cardsGrid.append(col);
 }
 
 let categories = [];
-let clothes = [];
-let emotions = [];
+let categoryImages = [];
+
 let setA = [];
 let setC = [];
+let animalA = [];
+let animalB = [];
+let clothes = [];
+let emotions = [];
+
+for(let i=1;i<cards.length;i++) {
+    categoryImages.push(cards[i][2].image)
+}
 
 function createCategories(){
     cards[0].forEach(function(item, index){
-        let category = new Category(item, index)
+        let category = new Category(item, index, categoryImages[index])
         categories.push(category)
     })
 }
+
+console.log(categories)
 
 function createItems(cardsSet, classSet) {
     cards[cardsSet].forEach(function(item, index){
