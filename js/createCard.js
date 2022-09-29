@@ -42,7 +42,6 @@ export default function createCard(cardImage, title, index, translation) {
     cardBodyRotated.append(cardTranslation);
     back.append(cardBodyRotated);
 
-    front.append
     col.append(front);
     col.append(back);
     // col.append(card);

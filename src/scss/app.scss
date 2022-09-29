@@ -95,6 +95,8 @@ hr {
     }
     &.front {
         // display: none;
+        // transform: rotateY(0deg);
+        backface-visibility: hidden;
         &.flipped {
         transform: rotateY(180deg);
         transition: 1s;
@@ -102,22 +104,21 @@ hr {
         }
     }
     &.back {
+        position: absolute;
+        margin-right: calc(var(--bs-gutter-x) * .5);
+        margin-left: calc(var(--bs-gutter-x) * .5);
+
         // display: none;
         transform: rotateY(180deg);
         transition: 1s;
         padding-bottom: 30px;
         backface-visibility: hidden;
         &.unflipped {
+            transition: 1s;
             transform: rotateY(0deg); 
         }
     }
 }
-
- .back {
-     position: absolute;
-     margin-right: calc(var(--bs-gutter-x) * .5);
-     margin-left: calc(var(--bs-gutter-x) * .5);
- }
 
 .col {
     position: relative;
