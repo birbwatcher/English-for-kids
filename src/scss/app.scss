@@ -97,21 +97,20 @@ hr {
         border: none;
         background-color: transparent;
     }
-    &.flipped {
-        transform: rotateY(180deg);
-        transition: 1s;
-        > .card-body-rotated {
-            transform: rotateY(180deg);
-            display: block;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            h5 {
-                text-transform: capitalize;
-            }
-        }
+    // &.flipped {
+    //     transform: rotateY(180deg);
+    //     transition: 1s;
+    //     > .card-body-rotated {
+    //         transform: rotateY(180deg);
+    //         display: flex;
+    //         flex-direction: column;
+    //         align-items: center;
+    //         h5 {
+    //             text-transform: capitalize;
+    //         }
+    //     }
 
-    }
+    // }
     .card-body-rotated {
         // background-color: white;
         width: 100%;
@@ -119,6 +118,7 @@ hr {
         bottom: 0;
         left: 0;
         display: none;
+        // backface-visibility: hidden;
         transform: rotateY(180deg);
     }
 }
