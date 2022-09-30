@@ -5,15 +5,22 @@ import {createOffcanvasMenu} from  '../js/createCard.js'
 
 let cardsGrid = document.querySelector('.cards');
 let offcanvasBody = document.querySelector('.offcanvas-body');
+let gameToggle = document.querySelector('.form-check-input');
 
-document.querySelector('.form-check-input').onclick = function() {
+gameToggle.onclick = function() {
     let trainSwitch = document.querySelector('.switch');
+    let english = document.querySelectorAll('.english');
     trainSwitch.classList.toggle('switch-on');
-    if (trainSwitch.classList.contains('switch-on')) {
+    if (gameToggle.checked) {
         trainSwitch.innerHTML = "Train";
+        english.forEach(item => item.classList.add('hidden'))
+        document.querySelectorAll('.front').forEach(item => item.classList.remove('flipped'))
+        document.querySelectorAll('.back').forEach(item => item.classList.remove('unflipped'))
     } else {
         trainSwitch.innerHTML = "Play";
+        english.forEach(item => item.classList.remove('hidden'))
     }
+    console.log(gameToggle.checked)
 }
 
 class Category {
@@ -49,7 +56,9 @@ class BaseCard {
         createCard(this.image, this.word, this.id, this.translation)
     }
     getSound(){
+        if (!gameToggle.checked) {
         new Audio(this.audioSrc).play()
+        }
     }
 }
 
@@ -120,6 +129,8 @@ cardsGrid.addEventListener('mouseout', function(e) {
     }
 })
 
+
+
 offcanvasBody.addEventListener('click', function(e) {
 if (e.target.classList.contains('nav-link')) {
     let categoryId = e.target.getAttribute('data');
@@ -132,4 +143,8 @@ if (e.target.classList.contains('nav-link')) {
 
 })
 
+
+
+
 export {cardsGrid}
+export {gameToggle}

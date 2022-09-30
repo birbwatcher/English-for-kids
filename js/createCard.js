@@ -1,4 +1,5 @@
 import {cardsGrid} from "./script.js";
+import {gameToggle} from "./script.js";
 
 export default function createCard(cardImage, title, index, translation) {
     let col = document.createElement('div');
@@ -62,7 +63,7 @@ export function createCategory(cardImage, title, index) {
     image.src = './data/' + cardImage;
 
     let cardBody = document.createElement('div');
-    cardBody.classList.add('card-body','english');
+    cardBody.classList.add('card-body');
     let cardTitle = document.createElement('h5');
     cardTitle.classList.add('title')
     cardTitle.innerHTML = title;
