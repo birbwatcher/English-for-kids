@@ -76,14 +76,6 @@ function createCategory(cardImage, title, index) {
 let categories = [];
 let arrayOfcards = [];
 
-
-// let setA = [];
-// let setC = [];
-// let animalA = [];
-// let animalB = [];
-// let clothes = [];
-// let emotions = [];
-
 function createCategories(){
     let categoryImages = [];
     for(let i=1;i<cards.length;i++) {
@@ -97,8 +89,6 @@ function createCategories(){
     categories.forEach(item => item.getCategory())
 }
 
-console.log(categories)
-
 function createItems(cardsSet) {
     document.querySelector('.row').innerHTML = '';
     cards[cardsSet].forEach(function(item, index){
@@ -110,21 +100,22 @@ function createItems(cardsSet) {
 
 createCategories()
 
-let cardsFrontItems = document.querySelectorAll('.front');
-let cardsBackItems = document.querySelectorAll('.back');
+
 
 
 cardsGrid.addEventListener('click', function(e) {
-    console.log(e.target.parentNode.parentNode.id)
+    let cardsFrontItems = document.querySelectorAll('.front');
+    let cardsBackItems = document.querySelectorAll('.back');
+    // console.log(e.target.parentNode.parentNode.id)
     if (e.target.classList.contains('rotate')) {
         let index = e.target.parentNode.parentNode.parentNode.id;
-
+        console.log(cardsFrontItems)
         cardsFrontItems[index].classList.add('flipped');
         cardsBackItems[index].classList.add('unflipped');
     }
     if (e.target.parentElement.classList.contains('front')) {
         let index = e.target.parentElement.parentElement.id;
-        console.log(clothes[index].getWord())
+        console.log(arrayOfcards[index].getWord())
     }
     if (e.target.parentElement.classList.contains('category')) {
         let index = Number(e.target.parentNode.parentNode.id)+1;
@@ -133,7 +124,8 @@ cardsGrid.addEventListener('click', function(e) {
 })
 
 cardsGrid.addEventListener('mouseout', function(e) {
-    // console.log(e.target.parentNode.parentNode.id);
+    let cardsFrontItems = document.querySelectorAll('.front');
+    let cardsBackItems = document.querySelectorAll('.back');
     let index = e.target.parentNode.parentNode.id;
     if (e.target.parentElement.classList.contains('back')) {
         cardsFrontItems[index].classList.remove('flipped');

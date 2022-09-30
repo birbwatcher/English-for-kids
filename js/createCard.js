@@ -46,3 +46,5 @@ export default function createCard(cardImage, title, index, translation) {
     col.append(back);
     // col.append(card);
 }
+
+
