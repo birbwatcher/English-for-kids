@@ -8,19 +8,43 @@ let offcanvasBody = document.querySelector('.offcanvas-body');
 let gameToggle = document.querySelector('.form-check-input');
 
 gameToggle.onclick = function() {
+    // let trainSwitch = document.querySelector('.switch');
+    // let english = document.querySelectorAll('.english');
+    // trainSwitch.classList.toggle('switch-on');
+    // if (gameToggle.checked) {
+    //     trainSwitch.innerHTML = "Train";
+    //     english.forEach(item => item.classList.add('hidden'))
+    //     document.querySelectorAll('.front').forEach(item => item.classList.remove('flipped'))
+    //     document.querySelectorAll('.back').forEach(item => item.classList.remove('unflipped'))
+    //     document.querySelector('.play').classList.remove('hidden')
+    // } else {
+    //     trainSwitch.innerHTML = "Play";
+    //     english.forEach(item => item.classList.remove('hidden'))
+    //     document.querySelector('.play').classList.add('hidden')
+    // }
+    // console.log(gameToggle.checked)
+    checkToggle()
+}
+
+function checkToggle() {
     let trainSwitch = document.querySelector('.switch');
     let english = document.querySelectorAll('.english');
-    trainSwitch.classList.toggle('switch-on');
+    // trainSwitch.classList.toggle('switch-on');
     if (gameToggle.checked) {
         trainSwitch.innerHTML = "Train";
+        trainSwitch.classList.add('switch-on');
         english.forEach(item => item.classList.add('hidden'))
         document.querySelectorAll('.front').forEach(item => item.classList.remove('flipped'))
         document.querySelectorAll('.back').forEach(item => item.classList.remove('unflipped'))
+        if (document.querySelectorAll('.category').length === 0) {
+            document.querySelector('.play').classList.remove('hidden');
+        }
     } else {
         trainSwitch.innerHTML = "Play";
+        trainSwitch.classList.remove('switch-on');
         english.forEach(item => item.classList.remove('hidden'))
+        document.querySelector('.play').classList.add('hidden')
     }
-    console.log(gameToggle.checked)
 }
 
 class Category {
@@ -66,6 +90,7 @@ const categories = [];
 const arrayOfcards = [];
 
 function createCategories(){
+    gameToggle.checked = false;
     document.querySelector('.row').innerHTML = '';
     const categories = [];
     const categoryImages = [];
@@ -81,6 +106,7 @@ function createCategories(){
     if (document.querySelectorAll('.nav-item').length === 1) {
         categories.forEach(item => createOffcanvasMenu(item.getCategoryName(), item.getCategoryNum()))
     }
+    checkToggle()
 }
 
 function createItems(cardsSet) {
@@ -91,6 +117,7 @@ function createItems(cardsSet) {
         arrayOfcards.push(card);
     })
     arrayOfcards.forEach(item => item.getCard())
+    checkToggle()
 }
 
 createCategories()
