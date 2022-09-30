@@ -39,7 +39,7 @@ class BaseCard {
         this.word = word;
         this.translation = translation;
         this.image = image;
-        this.audioSrc = audioSrc;
+        this.audioSrc = './data/' + audioSrc;
         this.id = id;
     }
     getWord(){
@@ -47,6 +47,9 @@ class BaseCard {
     }
     getCard(){
         createCard(this.image, this.word, this.id, this.translation)
+    }
+    getSound(){
+        new Audio(this.audioSrc).play()
     }
 }
 
@@ -99,6 +102,7 @@ cardsGrid.addEventListener('click', function(e) {
     if (e.target.parentElement.classList.contains('front')) {
         let index = e.target.parentElement.parentElement.id;
         console.log(arrayOfcards[index].getWord())
+        arrayOfcards[index].getSound();
     }
     if (e.target.parentElement.classList.contains('category')) {
         let index = Number(e.target.parentNode.parentNode.id)+1;
