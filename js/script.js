@@ -21,6 +21,7 @@ class Category {
         this.name = name;
         this.image = image;
         this.id = id;
+        this.arrayNum = id + 1;
     }
     getCategory() {
         createCategory(this.image, this.name, this.id);
@@ -50,7 +51,7 @@ function createCategory(cardImage, title, index) {
     col.id = index;
 
     let card = document.createElement('div');
-    card.classList.add('card');
+    card.classList.add('card','category');
 
     let image = document.createElement('img');
     image.classList.add('card-img-top');
@@ -60,6 +61,7 @@ function createCategory(cardImage, title, index) {
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body','english');
     let cardTitle = document.createElement('h5');
+    cardTitle.classList.add('title')
     cardTitle.innerHTML = title;
     cardBody.append(cardTitle);
 
@@ -72,50 +74,41 @@ function createCategory(cardImage, title, index) {
 }
 
 let categories = [];
-let categoryImages = [];
+let arrayOfcards = [];
 
-let setA = [];
-let setC = [];
-let animalA = [];
-let animalB = [];
-let clothes = [];
-let emotions = [];
 
-for(let i=1;i<cards.length;i++) {
-    categoryImages.push(cards[i][2].image)
-}
+// let setA = [];
+// let setC = [];
+// let animalA = [];
+// let animalB = [];
+// let clothes = [];
+// let emotions = [];
 
 function createCategories(){
+    let categoryImages = [];
+    for(let i=1;i<cards.length;i++) {
+        categoryImages.push(cards[i][2].image)
+    }
+
     cards[0].forEach(function(item, index){
         let category = new Category(item, index, categoryImages[index])
         categories.push(category)
     })
+    categories.forEach(item => item.getCategory())
 }
 
 console.log(categories)
 
-function createItems(cardsSet, classSet) {
+function createItems(cardsSet) {
+    document.querySelector('.row').innerHTML = '';
     cards[cardsSet].forEach(function(item, index){
         let card = new BaseCard(item.word, item.translation, item.image, item.audioSrc, index)
-        classSet.push(card);
+        arrayOfcards.push(card);
     })
+    arrayOfcards.forEach(item => item.getCard())
 }
 
-createItems(5,clothes)
-createItems(6,emotions)
-createItems(3,setC)
-
-
-console.log(emotions);
 createCategories()
-categories.forEach(item => item.getCategory())
-
-// emotions.forEach(item => item.getCard())
-// setC.forEach(item => item.getCard())
-
-// cardsGrid.onclick = function (e) {
-
-// }
 
 let cardsFrontItems = document.querySelectorAll('.front');
 let cardsBackItems = document.querySelectorAll('.back');
@@ -132,6 +125,10 @@ cardsGrid.addEventListener('click', function(e) {
     if (e.target.parentElement.classList.contains('front')) {
         let index = e.target.parentElement.parentElement.id;
         console.log(clothes[index].getWord())
+    }
+    if (e.target.parentElement.classList.contains('category')) {
+        let index = Number(e.target.parentNode.parentNode.id)+1;
+        createItems(index)
     }
 })
 
