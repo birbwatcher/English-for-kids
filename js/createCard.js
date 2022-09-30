@@ -48,3 +48,30 @@ export default function createCard(cardImage, title, index, translation) {
 }
 
 
+export function createCategory(cardImage, title, index) {
+    let col = document.createElement('div');
+    col.classList.add('col', 'col-sm-6', 'col-lg-4', 'col-xl-3');
+    col.id = index;
+
+    let card = document.createElement('div');
+    card.classList.add('card','category');
+
+    let image = document.createElement('img');
+    image.classList.add('card-img-top');
+
+    image.src = './data/' + cardImage;
+
+    let cardBody = document.createElement('div');
+    cardBody.classList.add('card-body','english');
+    let cardTitle = document.createElement('h5');
+    cardTitle.classList.add('title')
+    cardTitle.innerHTML = title;
+    cardBody.append(cardTitle);
+
+    card.append(image);
+    card.append(cardBody);
+
+
+    col.append(card);
+    cardsGrid.append(col);
+}
