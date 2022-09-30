@@ -71,7 +71,21 @@ export function createCategory(cardImage, title, index) {
     card.append(image);
     card.append(cardBody);
 
-
     col.append(card);
     cardsGrid.append(col);
+}
+
+export function createOffcanvasMenu(categoryName, num){
+    let menu = document.querySelector('.navbar-nav');
+    let navItem = document.createElement('li');
+    let navLink = document.createElement('a');
+    navLink.innerHTML = categoryName;
+    navItem.classList.add('nav-item');
+    navLink.classList.add('nav-link');
+    navLink.setAttribute('data', num);
+    navLink.href = '#';
+    navItem.append(navLink);
+    menu.append(navItem);
+
+    console.log(categoryName);
 }

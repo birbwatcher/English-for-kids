@@ -1,8 +1,10 @@
 import cards from '../data/cards.js';
 import createCard from  '../js/createCard.js'
 import {createCategory} from  '../js/createCard.js'
+import {createOffcanvasMenu} from  '../js/createCard.js'
 
 let cardsGrid = document.querySelector('.cards');
+let offcanvasBody = document.querySelector('.offcanvas-body');
 
 document.querySelector('.form-check-input').onclick = function() {
     let trainSwitch = document.querySelector('.switch');
@@ -20,6 +22,12 @@ class Category {
         this.image = image;
         this.id = id;
         this.arrayNum = id + 1;
+    }
+    getCategoryName() {
+        return this.name;
+    }
+    getCategoryNum(){
+        return this.arrayNum
     }
     getCategory() {
         createCategory(this.image, this.name, this.id);
@@ -42,14 +50,13 @@ class BaseCard {
     }
 }
 
-
-
-
-let categories = [];
-let arrayOfcards = [];
+const categories = [];
+const arrayOfcards = [];
 
 function createCategories(){
-    let categoryImages = [];
+    document.querySelector('.row').innerHTML = '';
+    const categories = [];
+    const categoryImages = [];
     for(let i=1;i<cards.length;i++) {
         categoryImages.push(cards[i][2].image)
     }
@@ -59,9 +66,13 @@ function createCategories(){
         categories.push(category)
     })
     categories.forEach(item => item.getCategory())
+    if (document.querySelectorAll('.nav-item').length === 1) {
+        categories.forEach(item => createOffcanvasMenu(item.getCategoryName(), item.getCategoryNum()))
+    }
 }
 
 function createItems(cardsSet) {
+    arrayOfcards.length = 0;
     document.querySelector('.row').innerHTML = '';
     cards[cardsSet].forEach(function(item, index){
         let card = new BaseCard(item.word, item.translation, item.image, item.audioSrc, index)
@@ -103,6 +114,18 @@ cardsGrid.addEventListener('mouseout', function(e) {
         cardsFrontItems[index].classList.remove('flipped');
         cardsBackItems[index].classList.remove('unflipped');
     }
+})
+
+offcanvasBody.addEventListener('click', function(e) {
+if (e.target.classList.contains('nav-link')) {
+    let categoryId = e.target.getAttribute('data');
+    if (categoryId > 0) {
+        createItems(categoryId)
+    } else {
+        createCategories()
+    }
+}
+
 })
 
 export {cardsGrid}
