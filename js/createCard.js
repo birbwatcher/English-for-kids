@@ -88,5 +88,4 @@ export function createOffcanvasMenu(categoryName, num){
     navLink.href = '#';
     navItem.append(navLink);
     menu.append(navItem);
-    console.log(categoryName);
 }

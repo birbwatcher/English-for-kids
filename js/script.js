@@ -1,35 +1,23 @@
 import cards from '../data/cards.js';
-import createCard from  '../js/createCard.js'
-import {createCategory} from  '../js/createCard.js'
-import {createOffcanvasMenu} from  '../js/createCard.js'
+import createCard from  '../js/createCard.js';
+import {createCategory} from  '../js/createCard.js';
+import {createOffcanvasMenu} from  '../js/createCard.js';
+import gameInit, { resetGame } from './game.js';
 
 let cardsGrid = document.querySelector('.cards');
 let offcanvasBody = document.querySelector('.offcanvas-body');
 let gameToggle = document.querySelector('.form-check-input');
 
 gameToggle.onclick = function() {
-    // let trainSwitch = document.querySelector('.switch');
-    // let english = document.querySelectorAll('.english');
-    // trainSwitch.classList.toggle('switch-on');
-    // if (gameToggle.checked) {
-    //     trainSwitch.innerHTML = "Train";
-    //     english.forEach(item => item.classList.add('hidden'))
-    //     document.querySelectorAll('.front').forEach(item => item.classList.remove('flipped'))
-    //     document.querySelectorAll('.back').forEach(item => item.classList.remove('unflipped'))
-    //     document.querySelector('.play').classList.remove('hidden')
-    // } else {
-    //     trainSwitch.innerHTML = "Play";
-    //     english.forEach(item => item.classList.remove('hidden'))
-    //     document.querySelector('.play').classList.add('hidden')
-    // }
-    // console.log(gameToggle.checked)
-    checkToggle()
+    checkToggle();
 }
 
 function checkToggle() {
+    gameInit();
     let trainSwitch = document.querySelector('.switch');
     let english = document.querySelectorAll('.english');
     // trainSwitch.classList.toggle('switch-on');
+    console.log(gameToggle.checked)
     if (gameToggle.checked) {
         trainSwitch.innerHTML = "Train";
         trainSwitch.classList.add('switch-on');
@@ -39,11 +27,15 @@ function checkToggle() {
         if (document.querySelectorAll('.category').length === 0) {
             document.querySelector('.play').classList.remove('hidden');
         }
-    } else {
+    } 
+    if (!gameToggle.checked) {
+        console.log('helo');
+        resetGame();
         trainSwitch.innerHTML = "Play";
         trainSwitch.classList.remove('switch-on');
         english.forEach(item => item.classList.remove('hidden'))
         document.querySelector('.play').classList.add('hidden')
+        document.querySelector('.play').innerHTML = 'Play';
     }
 }
 
@@ -80,9 +72,9 @@ class BaseCard {
         createCard(this.image, this.word, this.id, this.translation)
     }
     getSound(){
-        if (!gameToggle.checked) {
+        // if (!gameToggle.checked) {
         new Audio(this.audioSrc).play()
-        }
+        // }
     }
 }
 
@@ -91,6 +83,7 @@ const arrayOfcards = [];
 
 function createCategories(){
     gameToggle.checked = false;
+    resetGame()
     document.querySelector('.row').innerHTML = '';
     const categories = [];
     const categoryImages = [];
@@ -110,6 +103,8 @@ function createCategories(){
 }
 
 function createItems(cardsSet) {
+    gameToggle.checked = false;
+    resetGame();
     arrayOfcards.length = 0;
     document.querySelector('.row').innerHTML = '';
     cards[cardsSet].forEach(function(item, index){
@@ -117,7 +112,7 @@ function createItems(cardsSet) {
         arrayOfcards.push(card);
     })
     arrayOfcards.forEach(item => item.getCard())
-    checkToggle()
+    checkToggle();
 }
 
 createCategories()
@@ -128,17 +123,16 @@ createCategories()
 cardsGrid.addEventListener('click', function(e) {
     let cardsFrontItems = document.querySelectorAll('.front');
     let cardsBackItems = document.querySelectorAll('.back');
-    // console.log(e.target.parentNode.parentNode.id)
     if (e.target.classList.contains('rotate')) {
         let index = e.target.parentNode.parentNode.parentNode.id;
-        console.log(cardsFrontItems)
         cardsFrontItems[index].classList.add('flipped');
         cardsBackItems[index].classList.add('unflipped');
     }
     if (e.target.parentElement.classList.contains('front')) {
         let index = e.target.parentElement.parentElement.id;
-        console.log(arrayOfcards[index].getWord())
-        arrayOfcards[index].getSound();
+        if (!gameToggle.checked) {
+            arrayOfcards[index].getSound();
+        }
     }
     if (e.target.parentElement.classList.contains('category')) {
         let index = Number(e.target.parentNode.parentNode.id)+1;
@@ -175,3 +169,4 @@ if (e.target.classList.contains('nav-link')) {
 
 export {cardsGrid}
 export {gameToggle}
+export {arrayOfcards}
