@@ -1,12 +1,12 @@
 import cards from '../data/cards.js';
-import createCard from  '../js/createCard.js';
-import {createCategory} from  '../js/createCard.js';
-import {createOffcanvasMenu} from  '../js/createCard.js';
+import createCard from './createCard.js';
+import { createCategory } from './createCard.js';
+import { createOffcanvasMenu } from './createCard.js';
 import gameInit, { resetGame } from './game.js';
 
-let cardsGrid = document.querySelector('.cards');
+const cardsGrid = document.querySelector('.cards');
 let offcanvasBody = document.querySelector('.offcanvas-body');
-let gameToggle = document.querySelector('.form-check-input');
+const gameToggle = document.querySelector('.form-check-input');
 
 gameToggle.onclick = function() {
     checkToggle();
@@ -156,7 +156,7 @@ cardsGrid.addEventListener('mouseout', function(e) {
 
 offcanvasBody.addEventListener('click', function(e) {
 if (e.target.classList.contains('nav-link')) {
-    document.querySelectorAll('.active').forEach(item => item.classList.remove('active'))
+    document.querySelectorAll('.active').forEach(item => item.classList.remove())
     e.target.classList.add('active');
     let categoryId = e.target.getAttribute('data');
     if (categoryId > 0) {
