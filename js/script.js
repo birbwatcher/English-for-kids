@@ -26,6 +26,7 @@ function checkToggle() {
         document.querySelectorAll('.back').forEach(item => item.classList.remove('unflipped'))
         if (document.querySelectorAll('.category').length === 0) {
             document.querySelector('.play').classList.remove('hidden');
+            document.querySelector('.progress').classList.remove('hidden');
         }
     } 
     if (!gameToggle.checked) {
@@ -35,6 +36,7 @@ function checkToggle() {
         trainSwitch.classList.remove('switch-on');
         english.forEach(item => item.classList.remove('hidden'))
         document.querySelector('.play').classList.add('hidden')
+        document.querySelector('.progress').classList.add('hidden')
         document.querySelector('.play').innerHTML = 'Play';
     }
 }

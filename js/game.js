@@ -6,6 +6,7 @@ let gameStarted = false;
 let card;
 
 let cardsGrid = document.querySelector('.cards');
+let progress = document.querySelector('.progress-bar');
 
 export default function gameInit() {
     gameArray = shuffleArray(arrayOfcards).slice(0);
@@ -41,6 +42,7 @@ cardsGrid.addEventListener('click', function(e) {
             console.log('yes!')
             card = gameArray.pop();
             new Audio('./data/audio/correct.mp3').play()
+            progress.style.width = parseNumber(progress.style.width) + 12.5 + '%';
             card.getSound();
         }
     }
@@ -55,3 +57,8 @@ export function resetGame() {
     console.log('reset');
     gameStarted = false;
 }
+
+
+function parseNumber(number) {
+    return Number(number.replace(/[^0-9\.-]+/g,""))
+  }
