@@ -8,8 +8,13 @@ let card;
 let cardsGrid = document.querySelector('.cards');
 let progress = document.querySelector('.progress-bar');
 
+// let myModal = new bootstrap.Modal(document.querySelector('.modal'))
+
+// myModal.show()
+
 export default function gameInit() {
     gameArray = shuffleArray(arrayOfcards).slice(0);
+    progress.style.width = '0%';
     // console.log(gameArray);
 
 }

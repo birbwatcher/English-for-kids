@@ -156,6 +156,8 @@ cardsGrid.addEventListener('mouseout', function(e) {
 
 offcanvasBody.addEventListener('click', function(e) {
 if (e.target.classList.contains('nav-link')) {
+    document.querySelectorAll('.active').forEach(item => item.classList.remove('active'))
+    e.target.classList.add('active');
     let categoryId = e.target.getAttribute('data');
     if (categoryId > 0) {
         createItems(categoryId)
