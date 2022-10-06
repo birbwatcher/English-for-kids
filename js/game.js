@@ -12,6 +12,11 @@ const progress = document.querySelector('.progress-bar');
 
 // myModal.show()
 
+function shuffleArray(array) {
+  const newArray = array.slice(0);
+  return newArray.sort(() => Math.random() - 0.5);
+}
+
 export default function gameInit() {
   gameArray = shuffleArray(arrayOfcards).slice(0);
   progress.style.width = '0%';
@@ -25,7 +30,7 @@ export function gameStart() {
 }
 
 document.querySelector('.game').addEventListener('click', (e) => {
-  console.log(gameStarted);
+//   console.log(gameStarted);
   if (e.target.classList.contains('play')) {
     if (!gameStarted) {
       gameStart();
@@ -34,16 +39,20 @@ document.querySelector('.game').addEventListener('click', (e) => {
   }
 });
 
+function parseNumber(number) {
+  return Number(number.replace(/[^0-9.-]+/g, ''));
+}
+
 cardsGrid.addEventListener('click', (e) => {
   if (gameStarted) {
     const index = e.target.parentNode.parentNode.id;
-    console.log(arrayOfcards[index].word);
+    // console.log(arrayOfcards[index].word);
     if (arrayOfcards[index].word !== card.word) {
-      console.log('nooo');
+    //   console.log('nooo');
       new Audio('./data/audio/error.mp3').play();
     }
     if (arrayOfcards[index].word === card.word) {
-      console.log('yes!');
+    //   console.log('yes!');
       card = gameArray.pop();
       new Audio('./data/audio/correct.mp3').play();
       progress.style.width = `${parseNumber(progress.style.width) + 12.5}%`;
@@ -52,16 +61,7 @@ cardsGrid.addEventListener('click', (e) => {
   }
 });
 
-function shuffleArray(array) {
-  const newArray = array.slice(0);
-  return newArray.sort(() => Math.random() - 0.5);
-}
-
 export function resetGame() {
-  console.log('reset');
+//   console.log('reset');
   gameStarted = false;
-}
-
-function parseNumber(number) {
-  return Number(number.replace(/[^0-9\.-]+/g, ''));
 }

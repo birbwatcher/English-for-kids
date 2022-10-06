@@ -1,4 +1,4 @@
-import { cardsGrid, gameToggle } from './script.js';
+import { cardsGrid } from './script.js';
 
 export default function createCard(cardImage, title, index, translation) {
   const col = document.createElement('div');

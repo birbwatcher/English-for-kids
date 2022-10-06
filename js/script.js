@@ -1,17 +1,14 @@
 import cards from '../data/cards.js';
-import createCard, { createCategory, createOffcanvasMenu } from './createCard.js';
-
+// import createCard, { createCategory, createOffcanvasMenu } from './createCard.js';
+import createCategories from './categories.js';
 import gameInit, { resetGame } from './game.js';
+import createCard from './createCard.js';
 
 const cardsGrid = document.querySelector('.cards');
 const offcanvasBody = document.querySelector('.offcanvas-body');
 const gameToggle = document.querySelector('.form-check-input');
 
-gameToggle.onclick = function () {
-  checkToggle();
-};
-
-function checkToggle() {
+export function checkToggle() {
   gameInit();
   const trainSwitch = document.querySelector('.switch');
   const english = document.querySelectorAll('.english');
@@ -28,7 +25,7 @@ function checkToggle() {
     }
   }
   if (!gameToggle.checked) {
-    console.log('helo');
+    // console.log('helo');
     resetGame();
     trainSwitch.innerHTML = 'Play';
     trainSwitch.classList.remove('switch-on');
@@ -39,26 +36,9 @@ function checkToggle() {
   }
 }
 
-class Category {
-  constructor(name, id, image) {
-    this.name = name;
-    this.image = image;
-    this.id = id;
-    this.arrayNum = id + 1;
-  }
-
-  getCategoryName() {
-    return this.name;
-  }
-
-  getCategoryNum() {
-    return this.arrayNum;
-  }
-
-  getCategory() {
-    createCategory(this.image, this.name, this.id);
-  }
-}
+gameToggle.onclick = function () {
+  checkToggle();
+};
 
 class BaseCard {
   constructor(word, translation, image, audioSrc, id) {
@@ -84,29 +64,8 @@ class BaseCard {
   }
 }
 
-const categories = [];
+// const categories = [];
 const arrayOfcards = [];
-
-function createCategories() {
-  gameToggle.checked = false;
-  resetGame();
-  document.querySelector('.row').innerHTML = '';
-  const categories = [];
-  const categoryImages = [];
-  for (let i = 1; i < cards.length; i++) {
-    categoryImages.push(cards[i][2].image);
-  }
-
-  cards[0].forEach((item, index) => {
-    const category = new Category(item, index, categoryImages[index]);
-    categories.push(category);
-  });
-  categories.forEach((item) => item.getCategory());
-  if (document.querySelectorAll('.nav-item').length === 1) {
-    categories.forEach((item) => createOffcanvasMenu(item.getCategoryName(), item.getCategoryNum()));
-  }
-  checkToggle();
-}
 
 function createItems(cardsSet) {
   gameToggle.checked = false;
