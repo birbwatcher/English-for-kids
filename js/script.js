@@ -120,10 +120,9 @@ offcanvasBody.addEventListener('click', (e) => {
     document.querySelectorAll('.active').forEach((item) => item.classList.remove('active'));
     e.target.classList.add('active');
     const categoryId = Number(e.target.getAttribute('data'));
-    console.log(categoryId)
-    if (categoryId < 0 ) {
+    if (categoryId < 0) {
       createScore();
-    } 
+    }
     if (categoryId > 0) {
       createItems(categoryId);
     }
