@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-cycle
 import { arrayOfcards } from './script.js';
 // import {cardsGrid} from "./script.js";
+import {findWord} from "./score.js";
 
 let gameArray = [];
 let gameStarted = false;
@@ -21,7 +22,6 @@ function shuffleArray(array) {
 export default function gameInit() {
   gameArray = shuffleArray(arrayOfcards).slice(0);
   progress.style.width = '0%';
-  // console.log(gameArray);
 }
 
 export function gameStart() {
@@ -31,7 +31,6 @@ export function gameStart() {
 }
 
 document.querySelector('.game').addEventListener('click', (e) => {
-//   console.log(gameStarted);
   if (e.target.classList.contains('play')) {
     if (!gameStarted) {
       gameStart();
@@ -47,17 +46,16 @@ function parseNumber(number) {
 cardsGrid.addEventListener('click', (e) => {
   if (gameStarted) {
     const index = e.target.parentNode.parentNode.id;
-    // console.log(arrayOfcards[index].word);
     if (arrayOfcards[index].word !== card.word) {
-    //   console.log('nooo');
       new Audio('./data/audio/error.mp3').play();
+      findWord(card.word).fail += 1;
     }
     if (arrayOfcards[index].word === card.word) {
-    //   console.log('yes!');
       card = gameArray.pop();
       new Audio('./data/audio/correct.mp3').play();
       progress.style.width = `${parseNumber(progress.style.width) + 12.5}%`;
       card.getSound();
+      findWord(card.word).score += 1;
     }
   }
 });

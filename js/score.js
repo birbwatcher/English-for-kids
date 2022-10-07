@@ -9,7 +9,7 @@ const scoreArray = [];
 export default function createScore() {
   document.querySelector('.row').innerHTML = `<table class="table table-hover">
   <thead>
-    <tr>
+    <tr class="table-dark">
       <th scope="col">English</th>
       <th scope="col">Russian</th>
       <th scope="col">Success</th>
@@ -34,6 +34,9 @@ export default function createScore() {
     const cell5 = document.createElement('td');
     cell1.innerHTML = item.word;
     cell2.innerHTML = item.translation;
+    cell3.innerHTML = item.score;
+    cell4.innerHTML = item.fail;
+    cell5.innerHTML = item.success;
     row.append(cell1);
     row.append(cell2);
     row.append(cell3);
@@ -47,7 +50,9 @@ class ScoreItem {
   constructor(word, translation) {
     this.word = word;
     this.translation = translation;
-    // this.score = score;
+    this.score = 0;
+    this.fail = 0;
+    this.success = 0;
   }
 }
 
@@ -56,4 +61,14 @@ for (let i = 1; i < cards.length; i++) {
     const score = new ScoreItem(item.word, item.translation);
     scoreArray.push(score);
   });
+}
+
+export function findWord(word) {
+  let x;
+  scoreArray.forEach((item) => {
+    if (item.word === word) {
+      x = item;
+    }
+  });
+  return x;
 }
