@@ -119,13 +119,15 @@ offcanvasBody.addEventListener('click', (e) => {
   if (e.target.classList.contains('nav-link')) {
     document.querySelectorAll('.active').forEach((item) => item.classList.remove('active'));
     e.target.classList.add('active');
-    const categoryId = e.target.getAttribute('data');
+    const categoryId = Number(e.target.getAttribute('data'));
+    console.log(categoryId)
+    if (categoryId < 0 ) {
+      createScore();
+    } 
     if (categoryId > 0) {
       createItems(categoryId);
     }
-    if (categoryId === 'score') {
-      createScore();
-    } else {
+    if (categoryId === 0) {
       createCategories();
     }
   }

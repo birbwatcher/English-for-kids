@@ -4,7 +4,7 @@ import { gameToggle } from './script.js';
 import { resetGame } from './game.js';
 
 export default function createScore() {
+  document.querySelector('.row').innerHTML = '';
   gameToggle.checked = false;
   resetGame();
-  document.querySelector('.row').innerHTML = '';
 }
