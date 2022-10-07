@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { cardsGrid } from './script.js';
 
 export default function createCard(cardImage, title, index, translation) {

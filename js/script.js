@@ -1,8 +1,12 @@
 import cards from '../data/cards.js';
-// import createCard, { createCategory, createOffcanvasMenu } from './createCard.js';
+// eslint-disable-next-line import/no-cycle
 import createCategories from './categories.js';
+// eslint-disable-next-line import/no-cycle
 import gameInit, { resetGame } from './game.js';
+// eslint-disable-next-line import/no-cycle
 import createCard from './createCard.js';
+// eslint-disable-next-line import/no-cycle
+import createScore from './score.js';
 
 const cardsGrid = document.querySelector('.cards');
 const offcanvasBody = document.querySelector('.offcanvas-body');
@@ -36,7 +40,7 @@ export function checkToggle() {
   }
 }
 
-gameToggle.onclick = function () {
+gameToggle.onclick = function toggle() {
   checkToggle();
 };
 
@@ -113,11 +117,14 @@ cardsGrid.addEventListener('mouseout', (e) => {
 });
 offcanvasBody.addEventListener('click', (e) => {
   if (e.target.classList.contains('nav-link')) {
-    document.querySelectorAll('.active').forEach((item) => item.classList.remove());
+    document.querySelectorAll('.active').forEach((item) => item.classList.remove('active'));
     e.target.classList.add('active');
     const categoryId = e.target.getAttribute('data');
     if (categoryId > 0) {
       createItems(categoryId);
+    }
+    if (categoryId === 'score') {
+      createScore();
     } else {
       createCategories();
     }

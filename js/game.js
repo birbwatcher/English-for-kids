@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { arrayOfcards } from './script.js';
 // import {cardsGrid} from "./script.js";
 

@@ -1,6 +1,9 @@
 import cards from '../data/cards.js';
+// eslint-disable-next-line import/no-cycle
 import { gameToggle, checkToggle } from './script.js';
+// eslint-disable-next-line import/no-cycle
 import { resetGame } from './game.js';
+// eslint-disable-next-line import/no-cycle
 import { createCategory, createOffcanvasMenu } from './createCard.js';
 
 class Category {
@@ -39,7 +42,7 @@ export default function createCategories() {
     categories.push(category);
   });
   categories.forEach((item) => item.getCategory());
-  if (document.querySelectorAll('.nav-item').length === 1) {
+  if (document.querySelectorAll('.nav-item').length === 2) {
     categories.forEach((itm) => createOffcanvasMenu(itm.getCategoryName(), itm.getCategoryNum()));
   }
   checkToggle();
