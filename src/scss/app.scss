@@ -149,8 +149,6 @@ hr {
     background-color: white;
 }
 
-table { 
-    display: block;
-    max-width: fit-content;
-    overflow-x: scroll;
+.cards { 
+    overflow-x: auto;
 }
