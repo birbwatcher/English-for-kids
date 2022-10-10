@@ -10,6 +10,10 @@ import createCategories from './categories.js';
 let gameArray = [];
 let gameStarted = false;
 let card;
+let resultWindow = {};
+
+resultWindow.rightAns = 0;
+resultWindow.mistakes = 0;
 
 const cardsGrid = document.querySelector('.cards');
 const progress = document.querySelector('.progress-bar');
@@ -50,20 +54,31 @@ cardsGrid.addEventListener('click', (e) => {
     const index = e.target.parentNode.parentNode.id;
     if (arrayOfcards[index].word !== card.word) {
       findWord(card.word).fail += 1;
+      resultWindow.mistakes += 1;
       new Audio('./data/audio/error.mp3').play();
     }
     if (arrayOfcards[index].word === card.word) {
       findWord(card.word).score += 1;
+      resultWindow.rightAns += 1;
       card = gameArray.pop();
       new Audio('./data/audio/correct.mp3').play();
       progress.style.width = `${parseNumber(progress.style.width) + 12.5}%`;
       if (progress.style.width === '100%') {
         myModal.show();
+        if (resultWindow.mistakes === 0) {
+          document.querySelector('.result-img').src = './data/img/success.jpg';
+          new Audio('./data/audio/success.mp3').play();
+        }
+        if (resultWindow.mistakes > 0) {
+          document.querySelector('.result-img').src = './data/img/failure.jpg';
+          new Audio('./data/audio/failure.mp3').play();
+        }
+        document.querySelector('.mistakes').innerHTML = `Mistakes ${resultWindow.mistakes}`;
         createCategories();
       }
-      console.log(progress.style.width)
-      card.getSound();
-      
+      if (card) {
+        card.getSound();
+      }
     }
   }
 });
@@ -74,4 +89,6 @@ cardsGrid.addEventListener('click', (e) => {
 export function resetGame() {
 //   console.log('reset');
   gameStarted = false;
+  resultWindow.rightAns = 0;
+  resultWindow.mistakes = 0;
 }
