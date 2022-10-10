@@ -7,7 +7,7 @@ import { resetGame } from './game.js';
 const scoreArray = [];
 
 export default function createScore() {
-  document.querySelector('.row').innerHTML = `<table class="table table-hover">
+  document.querySelector('.row').innerHTML = `<div class="table-container"><table class="table table-hover">
   <thead>
     <tr class="table-dark">
       <th scope="col">English</th>
@@ -19,7 +19,7 @@ export default function createScore() {
   </thead>
   <tbody>
   </tbody>
-</table>`;
+</table></div>`;
   gameToggle.checked = false;
   resetGame();
 
