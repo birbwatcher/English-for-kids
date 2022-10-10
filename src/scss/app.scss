@@ -148,3 +148,9 @@ hr {
     max-height: 100%;
     background-color: white;
 }
+
+table { 
+    display: block;
+    max-width: fit-content;
+    overflow-x: scroll;
+}
