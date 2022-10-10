@@ -52,7 +52,7 @@ class ScoreItem {
     this.translation = translation;
     this.score = 0;
     this.fail = 0;
-    this.success = 0;
+    this.success = (this.score / this.fail);
   }
 }
 
