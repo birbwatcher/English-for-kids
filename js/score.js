@@ -6,6 +6,34 @@ import { resetGame } from './game.js';
 
 const scoreArray = [];
 
+export function tableSort() {
+  const table = document.querySelector('table');
+  const tbody = document.querySelector('tbody');
+  let rowsArray = Array.from(tbody.rows)
+  table.addEventListener('click', (e) => {
+    let index = e.target.cellIndex;
+    if (e.target.nodeName !== 'TH') return;
+    
+    function compare(row1, row2) {
+      const rowData1 = row1.cells[index].innerHTML;
+      const rowData2 = row2.cells[index].innerHTML;
+      if (!Number(row1.cells[index].innerHTML)) {
+        return rowData1 > rowData2 ? 1 : -1;
+      } 
+      if (Number(row1.cells[index].innerHTML)) {
+        return rowData1 - rowData2;
+      }
+    }
+
+    rowsArray.sort(compare);
+    table.removeChild(tbody);
+  
+    rowsArray.forEach(item => tbody.appendChild(item));
+    table.appendChild(tbody);
+});
+}
+
+
 export default function createScore() {
   document.querySelector('.row').innerHTML = `<div class="table-container"><table class="table table-hover">
   <thead>
@@ -44,6 +72,7 @@ export default function createScore() {
     row.append(cell5);
     table.append(row);
   });
+  tableSort();
 }
 
 class ScoreItem {

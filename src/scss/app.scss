@@ -152,3 +152,10 @@ hr {
 .table-container { 
     overflow-x: auto;
 }
+
+th {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
