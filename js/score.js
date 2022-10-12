@@ -86,7 +86,8 @@ export default function createScore() {
     cell2.innerHTML = item.translation;
     cell3.innerHTML = item.score;
     cell4.innerHTML = item.fail;
-    cell5.innerHTML = item.success;
+    // cell5.innerHTML = item.success;
+    cell5.innerHTML = successScore();
     cell6.innerHTML = item.clicks;
     row.append(cell1);
     row.append(cell2);
@@ -96,8 +97,19 @@ export default function createScore() {
     row.append(cell6);
     row.append(cell7);
     table.append(row);
+
+    function successScore() {
+      if (cell3.innerHTML == 0 && cell4.innerHTML == 0) {
+        return `${0}%`;
+      }
+      if (cell4.innerHTML == 0) {
+        return `${Math.round((Number(item.score) / 1) * 100)}%`;
+      }
+      return `${Math.round((Number(item.score) / Number(item.fail)) * 100)}%`;
+     }
   });
   tableSort();
+  
 }
 
 class ScoreItem {
@@ -127,3 +139,4 @@ export function findWord(word) {
   });
   return x;
 }
+
