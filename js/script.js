@@ -90,12 +90,12 @@ cardsGrid.addEventListener('click', (e) => {
   const cardsFrontItems = document.querySelectorAll('.front');
   const cardsBackItems = document.querySelectorAll('.back');
   if (e.target.classList.contains('rotate')) {
-    const index = e.target.parentNode.parentNode.parentNode.id;
+    const index = e.target.parentNode.parentNode.id;
     cardsFrontItems[index].classList.add('flipped');
     cardsBackItems[index].classList.add('unflipped');
   }
   if (e.target.parentElement.classList.contains('front')) {
-    const index = e.target.parentElement.parentElement.id;
+    const index = e.target.parentElement.id;
     if (!gameToggle.checked) {
       arrayOfcards[index].getSound();
     }
@@ -109,12 +109,16 @@ cardsGrid.addEventListener('click', (e) => {
 cardsGrid.addEventListener('mouseout', (e) => {
   const cardsFrontItems = document.querySelectorAll('.front');
   const cardsBackItems = document.querySelectorAll('.back');
-  const index = e.target.parentNode.parentNode.id;
-  if (e.target.parentElement.classList.contains('back')) {
-    cardsFrontItems[index].classList.remove('flipped');
-    cardsBackItems[index].classList.remove('unflipped');
+  if (e.target.firstChild !== null) {
+    const index = e.target.firstChild;
+    if (e.target.firstChild.nextSibling !== null && e.target.firstChild.nextSibling.classList.contains('back')) {
+      cardsFrontItems[index.id].classList.remove('flipped');
+      cardsBackItems[index.id].classList.remove('unflipped');
+    }
   }
+
 });
+
 offcanvasBody.addEventListener('click', (e) => {
   if (e.target.classList.contains('nav-link')) {
     document.querySelectorAll('.active').forEach((item) => item.classList.remove('active'));

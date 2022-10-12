@@ -10,7 +10,7 @@ import createCategories from './categories.js';
 let gameArray = [];
 let gameStarted = false;
 let card;
-let resultWindow = {};
+const resultWindow = {};
 
 resultWindow.rightAns = 0;
 resultWindow.mistakes = 0;

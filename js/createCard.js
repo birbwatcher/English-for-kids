@@ -13,7 +13,8 @@ export default function createCard(cardImage, title, index, translation) {
   const back = document.createElement('div');
   back.classList.add('card', 'back');
 
-  col.id = index;
+  // col.id = index;
+  front.id = index;
   const image = document.createElement('img');
   image.classList.add('card-img-top');
   const cardBody = document.createElement('div');
