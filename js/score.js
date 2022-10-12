@@ -89,6 +89,7 @@ export default function createScore() {
     // cell5.innerHTML = item.success;
     cell5.innerHTML = successScore();
     cell6.innerHTML = item.clicks;
+    cell7.innerHTML = item.category;
     row.append(cell1);
     row.append(cell2);
     row.append(cell3);
@@ -113,19 +114,20 @@ export default function createScore() {
 }
 
 class ScoreItem {
-  constructor(word, translation) {
+  constructor(word, translation, category) {
     this.word = word;
     this.translation = translation;
     this.score = 0;
     this.fail = 0;
     this.clicks = 0;
     this.success = 0;
+    this.category = category;
   }
 }
 
 for (let i = 1; i < cards.length; i++) {
   cards[i].forEach((item) => {
-    const score = new ScoreItem(item.word, item.translation);
+    const score = new ScoreItem(item.word, item.translation, cards[0][i - 1]);
     scoreArray.push(score);
   });
 }
