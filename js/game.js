@@ -51,7 +51,7 @@ function parseNumber(number) {
 
 cardsGrid.addEventListener('click', (e) => {
   if (gameStarted) {
-    const index = e.target.parentNode.parentNode.id;
+    const index = e.target.parentNode.id;
     if (arrayOfcards[index].word !== card.word) {
       findWord(card.word).fail += 1;
       resultWindow.mistakes += 1;
