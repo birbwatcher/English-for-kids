@@ -103,7 +103,7 @@ cardsGrid.addEventListener('click', (e) => {
     }
   }
   if (e.target.parentElement.classList.contains('category')) {
-    const index = Number(e.target.parentNode.parentNode.id) + 1;
+    const index = Number(e.target.parentNode.parentNode.getAttribute('data')) + 1;
     createItems(index);
   }
 });

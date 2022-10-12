@@ -53,7 +53,6 @@ function parseNumber(number) {
 
 cardsGrid.addEventListener('click', (e) => {
   function getIndex() {
-    console.log(e.target.parentNode.id)
     if (e.target.parentNode.id) {
       return Number(e.target.parentNode.id);
     }
@@ -97,7 +96,6 @@ cardsGrid.addEventListener('click', (e) => {
 
 
 export function resetGame() {
-//   console.log('reset');
   gameStarted = false;
   resultWindow.rightAns = 0;
   resultWindow.mistakes = 0;

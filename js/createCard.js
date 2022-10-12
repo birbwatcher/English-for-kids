@@ -53,6 +53,7 @@ export function createCategory(cardImage, title, index) {
   const col = document.createElement('div');
   col.classList.add('col', 'col-sm-6', 'col-lg-4', 'col-xl-3');
   // col.id = index;
+  col.setAttribute('data', index);
 
   const card = document.createElement('div');
   card.classList.add('card', 'category');
