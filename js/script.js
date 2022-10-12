@@ -24,7 +24,7 @@ export function checkToggle() {
     english.forEach((item) => item.classList.add('hidden'));
     document.querySelectorAll('.front').forEach((item) => item.classList.remove('flipped'));
     document.querySelectorAll('.back').forEach((item) => item.classList.remove('unflipped'));
-    if (document.querySelectorAll('.category').length === 0) {
+    if (document.querySelectorAll('.category').length === 0 && document.querySelectorAll('table').length === 0) {
       document.querySelector('.play').classList.remove('hidden');
       document.querySelector('.progress').classList.remove('hidden');
     }

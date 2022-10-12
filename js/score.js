@@ -3,10 +3,13 @@ import cards from '../data/cards.js';
 import { gameToggle } from './script.js';
 // eslint-disable-next-line import/no-cycle
 import { resetGame } from './game.js';
+// eslint-disable-next-line import/no-cycle
+import { checkToggle } from './script.js';
 
 const scoreArray = [];
 
 export function tableSort() {
+  checkToggle();
   const table = document.querySelector('table');
   const tbody = document.querySelector('tbody');
   const rowsArray = Array.from(tbody.rows);
