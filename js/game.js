@@ -49,9 +49,19 @@ function parseNumber(number) {
   return Number(number.replace(/[^0-9.-]+/g, ''));
 }
 
+
+
 cardsGrid.addEventListener('click', (e) => {
+  function getIndex() {
+    console.log(e.target.parentNode.id)
+    if (e.target.parentNode.id) {
+      return Number(e.target.parentNode.id);
+    }
+    return Number(e.target.id);
+  };
+
   if (gameStarted) {
-    const index = e.target.parentNode.id;
+    let index = getIndex();
     if (arrayOfcards[index].word !== card.word) {
       findWord(card.word).fail += 1;
       resultWindow.mistakes += 1;
