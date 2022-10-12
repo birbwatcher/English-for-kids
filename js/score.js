@@ -9,7 +9,8 @@ const scoreArray = [];
 export function tableSort() {
   const table = document.querySelector('table');
   const tbody = document.querySelector('tbody');
-  let rowsArray = Array.from(tbody.rows)
+  const rowsArray = Array.from(tbody.rows);
+  let asc = true;
   table.addEventListener('click', (e) => {
     let index = e.target.cellIndex;
     if (e.target.nodeName !== 'TH') return;
@@ -25,7 +26,24 @@ export function tableSort() {
       }
     }
 
-    rowsArray.sort(compare);
+    function compareDesc(row1, row2) {
+      const rowData1 = row1.cells[index].innerHTML;
+      const rowData2 = row2.cells[index].innerHTML;
+      if (!Number(row1.cells[index].innerHTML)) {
+        return rowData1 > rowData2 ? -1 : 1;
+      } 
+      if (Number(row1.cells[index].innerHTML)) {
+        return rowData2 - rowData1;
+      }
+    }
+    if (asc === true) {
+      asc = false;
+      rowsArray.sort(compare);
+    } else if (asc === false) {
+      asc = true;
+      rowsArray.sort(compareDesc);
+    } 
+
     table.removeChild(tbody);
   
     rowsArray.forEach(item => tbody.appendChild(item));
