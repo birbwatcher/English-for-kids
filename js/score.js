@@ -61,6 +61,8 @@ export default function createScore() {
       <th scope="col">Success</th>
       <th scope="col">Fail</th>
       <th scope="col">Success Score</th>
+      <th scope="col">Clicks</th>
+      <th scope="col">Category</th>
     </tr>
   </thead>
   <tbody>
@@ -78,16 +80,21 @@ export default function createScore() {
     const cell3 = document.createElement('td');
     const cell4 = document.createElement('td');
     const cell5 = document.createElement('td');
+    const cell6 = document.createElement('td');
+    const cell7 = document.createElement('td');
     cell1.innerHTML = item.word;
     cell2.innerHTML = item.translation;
     cell3.innerHTML = item.score;
     cell4.innerHTML = item.fail;
     cell5.innerHTML = item.success;
+    cell6.innerHTML = item.clicks;
     row.append(cell1);
     row.append(cell2);
     row.append(cell3);
     row.append(cell4);
     row.append(cell5);
+    row.append(cell6);
+    row.append(cell7);
     table.append(row);
   });
   tableSort();
@@ -99,7 +106,8 @@ class ScoreItem {
     this.translation = translation;
     this.score = 0;
     this.fail = 0;
-    this.success = (this.score / this.fail);
+    this.clicks = 0;
+    this.success = 0;
   }
 }
 

@@ -7,6 +7,7 @@ import gameInit, { resetGame } from './game.js';
 import createCard from './createCard.js';
 // eslint-disable-next-line import/no-cycle
 import createScore from './score.js';
+import { findWord } from './score.js';
 
 const cardsGrid = document.querySelector('.cards');
 const offcanvasBody = document.querySelector('.offcanvas-body');
@@ -98,6 +99,7 @@ cardsGrid.addEventListener('click', (e) => {
     const index = e.target.parentElement.id;
     if (!gameToggle.checked) {
       arrayOfcards[index].getSound();
+      findWord(arrayOfcards[index].getWord()).clicks += 1;
     }
   }
   if (e.target.parentElement.classList.contains('category')) {
