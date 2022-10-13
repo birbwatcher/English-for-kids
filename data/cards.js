@@ -303,7 +303,7 @@ const cards = [
   [
     {
       word: 'airplane',
-      translation: 'Самолёт',
+      translation: 'самолёт',
       image: 'img/airplane.jpg',
       audioSrc: 'audio/airplane.mp3'
     },

@@ -17,7 +17,6 @@ resultWindow.mistakes = 0;
 
 const cardsGrid = document.querySelector('.cards');
 const progress = document.querySelector('.progress-bar');
-
 const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
 
 function shuffleArray(array) {
@@ -60,13 +59,23 @@ cardsGrid.addEventListener('click', (e) => {
   };
 
   if (gameStarted) {
+    // const unsolvedCards = document.querySelectorAll('.col');
     let index = getIndex();
     if (arrayOfcards[index].word !== card.word) {
-      findWord(card.word).fail += 1;
-      resultWindow.mistakes += 1;
-      new Audio('./data/audio/error.mp3').play();
+      if (!e.target.classList.contains('solved')) {
+        findWord(card.word).fail += 1;
+        resultWindow.mistakes += 1;
+        new Audio('./data/audio/error.mp3').play();
+      }
     }
     if (arrayOfcards[index].word === card.word) {
+      e.target.classList.add('solved');
+      if (e.target.classList.contains('front')) {
+        e.target.firstChild.classList.add('solved');
+      }
+      if (e.target.classList.contains('card-img-top')) {
+        e.target.parentNode.classList.add('solved');
+      }
       findWord(card.word).score += 1;
       resultWindow.rightAns += 1;
       card = gameArray.pop();
