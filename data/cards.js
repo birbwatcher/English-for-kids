@@ -1,5 +1,5 @@
 const cards = [ 
-  ['Action (set A)', 'Action (set B)', 'Animal (set A)', 'Animal (set B)', 'Clothes', 'Emotions'],
+  ['Action (set A)', 'Action (set B)', 'Animal (set A)', 'Animal (set B)', 'Clothes', 'Emotions', 'Transport', 'Food'],
   [
     {
       word: 'cry',
@@ -298,6 +298,106 @@ const cards = [
       translation: 'смех',
       image: 'img/laugh.jpg',
       audioSrc: 'audio/laugh.mp3'
+    }
+  ],
+  [
+    {
+      word: 'airplane',
+      translation: 'Самолёт',
+      image: 'img/airplane.jpg',
+      audioSrc: 'audio/airplane.mp3'
+    },
+    {
+      word: 'bicycle',
+      translation: 'велосипед',
+      image: 'img/bicycle.jpg',
+      audioSrc: 'audio/bicycle.mp3'
+    },
+    {
+      word: 'car',
+      translation: 'машина',
+      image: 'img/car.jpg',
+      audioSrc: 'audio/car.mp3'
+    },
+    {
+      word: 'bus',
+      translation: 'автобус',
+      image: 'img/bus.jpg',
+      audioSrc: 'audio/bus.mp3'
+    },
+    {
+      word: 'tractor',
+      translation: 'трактор',
+      image: 'img/tractor.jpg',
+      audioSrc: 'audio/tractor.mp3'
+    },
+    {
+      word: 'ship',
+      translation: 'корабль',
+      image: 'img/ship.jpg',
+      audioSrc: 'audio/ship.mp3'
+    },
+    {
+      word: 'train',
+      translation: 'поезд',
+      image: 'img/train.jpg',
+      audioSrc: 'audio/train.mp3'
+    },
+    {
+      word: 'motorcycle',
+      translation: 'мотоцикл',
+      image: 'img/motorcycle.jpg',
+      audioSrc: 'audio/motorcycle.mp3'
+    }
+  ],
+  [
+    {
+      word: 'noodle',
+      translation: 'лапша',
+      image: 'img/noodle.jpg',
+      audioSrc: 'audio/noodle.mp3'
+    },
+    {
+      word: 'pancakes',
+      translation: 'блинчики',
+      image: 'img/pancakes.jpg',
+      audioSrc: 'audio/pancakes.mp3'
+    },
+    {
+      word: 'sandwich',
+      translation: 'бутерброд',
+      image: 'img/sandwich.jpg',
+      audioSrc: 'audio/sandwich.mp3'
+    },
+    {
+      word: 'milk',
+      translation: 'молоко',
+      image: 'img/milk.jpg',
+      audioSrc: 'audio/milk.mp3'
+    },
+    {
+      word: 'french fries',
+      translation: 'картошка фри',
+      image: 'img/french-fries.jpg',
+      audioSrc: 'audio/french-fries.mp3'
+    },
+    {
+      word: 'eggs',
+      translation: 'яйца',
+      image: 'img/eggs.jpg',
+      audioSrc: 'audio/eggs.mp3'
+    },
+    {
+      word: 'soup',
+      translation: 'суп',
+      image: 'img/soup.jpg',
+      audioSrc: 'audio/soup.mp3'
+    },
+    {
+      word: 'cheesecake',
+      translation: 'чизкейк',
+      image: 'img/cheesecake.jpg',
+      audioSrc: 'audio/cheesecake.mp3'
     }
   ]
 ]
