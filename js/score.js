@@ -128,23 +128,23 @@ export default function createScore() {
 
   resetRepeatPlate.addEventListener('click', (e) => {
     if (e.target.classList.contains('repeat')) {
-      const repeatArray = scoreArray.slice(0).sort((a, b) => a.fail < b.fail ? 1 : -1);
+      const repeatArray = scoreArray.slice(0).sort((a, b) => (a.fail < b.fail ? 1 : -1));
       arrayOfcards.length = 0;
       for (let i = 0; i < 8; i++) {
         if (repeatArray[i].fail !== 0) {
-          console.log(repeatArray[i].word)
           arrayOfcards.push(findObject(repeatArray[i].word, i));
         }
       }
-      console.log(arrayOfcards);
       gameToggle.checked = false;
       resetGame();
       document.querySelector('.row').innerHTML = '';
       arrayOfcards.forEach((item) => item.getCard());
       checkToggle();
+      if (arrayOfcards.length === 0) {
+        document.querySelector('.row').innerHTML = '<div class="d-flex justify-content-center no-words"><h2>There is no difficult words ;)</h2></div>';
+      }
     }
     if (e.target.classList.contains('reset')) {
-      console.log('reset');
     }
   });
 }
