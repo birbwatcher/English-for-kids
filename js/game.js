@@ -11,6 +11,7 @@ let gameArray = [];
 let gameStarted = false;
 let card;
 const resultWindow = {};
+let cardsCount;
 
 resultWindow.rightAns = 0;
 resultWindow.mistakes = 0;
@@ -33,6 +34,7 @@ export function gameStart() {
   document.querySelector('.play').innerHTML = 'Repeat word';
   gameStarted = true;
   card = gameArray.pop();
+  cardsCount = arrayOfcards.length;
 }
 
 document.querySelector('.game').addEventListener('click', (e) => {
@@ -76,12 +78,13 @@ cardsGrid.addEventListener('click', (e) => {
       if (e.target.classList.contains('card-img-top')) {
         e.target.parentNode.classList.add('solved');
       }
+      cardsCount -= 1;
       findWord(card.word).score += 1;
       resultWindow.rightAns += 1;
       card = gameArray.pop();
       new Audio('./data/audio/correct.mp3').play();
       progress.style.width = `${parseNumber(progress.style.width) + 12.5}%`;
-      if (progress.style.width === '100%') {
+      if (cardsCount === 0) {
         myModal.show();
         if (resultWindow.mistakes === 0) {
           document.querySelector('.result-img').src = './data/img/success.jpg';
