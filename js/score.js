@@ -59,6 +59,15 @@ export function tableSort() {
   // console.log(JSON.parse(localStorage.getItem('0')))
 }
 
+function createScoreItems() {
+  for (let i = 1; i < cards.length; i++) {
+    cards[i].forEach((item) => {
+      const score = new ScoreItem(item.word, item.translation, cards[0][i - 1]);
+      scoreArray.push(score);
+    });
+  }
+}
+
 export default function createScore() {
   document.querySelector('.cards').innerHTML = `<div class="table-container"><table class="table table-hover">
   <thead>
@@ -91,15 +100,6 @@ export default function createScore() {
   btnRepeat.innerHTML = 'Repeat difficult words';
   btnReset.innerHTML = 'Reset';
 
-  function createScoreItems() {
-    for (let i = 1; i < cards.length; i++) {
-      cards[i].forEach((item) => {
-        const score = new ScoreItem(item.word, item.translation, cards[0][i - 1]);
-        scoreArray.push(score);
-      });
-    }
-  }
-
   scoreArray.forEach((item) => {
     const table = document.querySelector('tbody');
     const row = document.createElement('tr');
@@ -111,6 +111,14 @@ export default function createScore() {
     const cell5 = document.createElement('td');
     const cell6 = document.createElement('td');
     const cell7 = document.createElement('td');
+
+    function successScore() {
+      if (cell3.innerHTML == 0 && cell4.innerHTML == 0) {
+        return '0%';
+      }
+      return `${Math.round((Number(item.score) * 100) / (Number(item.score) + Number(item.fail)))}%`;
+    }
+    
     cell1.innerHTML = item.word;
     cell2.innerHTML = item.translation;
     cell3.innerHTML = item.score;
@@ -126,16 +134,6 @@ export default function createScore() {
     row.append(cell6);
     row.append(cell7);
     table.append(row);
-
-    function successScore() {
-      if (cell3.innerHTML == 0 && cell4.innerHTML == 0) {
-        return '0%';
-      }
-      if (cell4.innerHTML == 0) {
-        return `${Math.round((Number(item.score) / 1) * 100)}%`;
-      }
-      return `${Math.round((Number(item.score) / Number(item.fail)) * 100)}%`;
-    }
   });
   tableSort();
 
