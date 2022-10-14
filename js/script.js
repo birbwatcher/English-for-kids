@@ -6,8 +6,7 @@ import gameInit, { resetGame } from './game.js';
 // eslint-disable-next-line import/no-cycle
 import createCard from './createCard.js';
 // eslint-disable-next-line import/no-cycle
-import createScore from './score.js';
-import { findWord } from './score.js';
+import createScore, { findWord } from './score.js';
 
 const cardsGrid = document.querySelector('.cards');
 const offcanvasBody = document.querySelector('.offcanvas-body');

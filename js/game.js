@@ -2,7 +2,7 @@
 import { arrayOfcards } from './script.js';
 // import {cardsGrid} from "./script.js";
 // eslint-disable-next-line import/no-cycle
-import { findWord } from './score.js';
+import { findWord, scoreArray } from './score.js';
 // eslint-disable-next-line import/no-cycle
 import createCategories from './categories.js';
 
@@ -100,6 +100,7 @@ cardsGrid.addEventListener('click', (e) => {
       }
     }
   }
+  localStorage.setItem('0', JSON.stringify(scoreArray));
 });
 
 function star(bool) {

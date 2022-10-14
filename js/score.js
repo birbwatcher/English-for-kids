@@ -4,8 +4,11 @@ import { gameToggle, checkToggle, arrayOfcards, BaseCard } from './script.js';
 // eslint-disable-next-line import/no-cycle
 import { resetGame } from './game.js';
 
-
-const scoreArray = [];
+// localStorage.clear()
+let scoreArray = [];
+if (localStorage.length !== 0) {
+  scoreArray = JSON.parse(localStorage.getItem('0')).slice(0);
+}
 
 export function tableSort() {
   checkToggle();
@@ -46,10 +49,14 @@ export function tableSort() {
     } 
 
     table.removeChild(tbody);
-  
     rowsArray.forEach(item => tbody.appendChild(item));
     table.appendChild(tbody);
 });
+  
+  if (localStorage.length === 0) {
+    localStorage.setItem('0', JSON.stringify(scoreArray));
+  }
+  // console.log(JSON.parse(localStorage.getItem('0')))
 }
 
 export default function createScore() {
@@ -84,6 +91,15 @@ export default function createScore() {
   btnRepeat.innerHTML = 'Repeat difficult words';
   btnReset.innerHTML = 'Reset';
 
+  function createScoreItems() {
+    for (let i = 1; i < cards.length; i++) {
+      cards[i].forEach((item) => {
+        const score = new ScoreItem(item.word, item.translation, cards[0][i - 1]);
+        scoreArray.push(score);
+      });
+    }
+  }
+
   scoreArray.forEach((item) => {
     const table = document.querySelector('tbody');
     const row = document.createElement('tr');
@@ -99,7 +115,6 @@ export default function createScore() {
     cell2.innerHTML = item.translation;
     cell3.innerHTML = item.score;
     cell4.innerHTML = item.fail;
-    // cell5.innerHTML = item.success;
     cell5.innerHTML = successScore();
     cell6.innerHTML = item.clicks;
     cell7.innerHTML = item.category;
@@ -144,6 +159,10 @@ export default function createScore() {
       }
     }
     if (e.target.classList.contains('reset')) {
+      localStorage.clear();
+      scoreArray.length = 0;
+      createScoreItems();
+      createScore();
     }
   });
 }
@@ -160,11 +179,8 @@ class ScoreItem {
   }
 }
 
-for (let i = 1; i < cards.length; i++) {
-  cards[i].forEach((item) => {
-    const score = new ScoreItem(item.word, item.translation, cards[0][i - 1]);
-    scoreArray.push(score);
-  });
+if (localStorage.length === 0) {
+  createScoreItems();
 }
 
 export function findWord(word) {
@@ -190,3 +206,4 @@ export function findObject(word, index) {
   return x;
 }
 
+export { scoreArray }
