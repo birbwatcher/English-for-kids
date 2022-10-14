@@ -17,6 +17,7 @@ resultWindow.mistakes = 0;
 
 const cardsGrid = document.querySelector('.cards');
 const progress = document.querySelector('.progress-bar');
+// eslint-disable-next-line no-undef
 const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
 
 function shuffleArray(array) {
@@ -49,13 +50,28 @@ function parseNumber(number) {
   return Number(number.replace(/[^0-9.-]+/g, ''));
 }
 
+function star(bool) {
+  const starIcon = document.createElement('img');
+  const stars = document.querySelectorAll('.star');
+  if (!bool) {
+    starIcon.src = './data/img/star.svg';
+  } else {
+    starIcon.src = './data/img/star-win.svg';
+  }
+  starIcon.classList.add('star');
+  if (stars.length === 8) {
+    document.querySelectorAll('.star')[0].remove();
+  }
+  document.querySelector('.stars').append(starIcon);
+}
+
 cardsGrid.addEventListener('click', (e) => {
   function getIndex() {
     if (e.target.parentNode.id) {
       return Number(e.target.parentNode.id);
     }
     return Number(e.target.id);
-  };
+  }
 
   if (gameStarted) {
     const index = getIndex();
@@ -102,21 +118,6 @@ cardsGrid.addEventListener('click', (e) => {
   }
   localStorage.setItem('0', JSON.stringify(scoreArray));
 });
-
-function star(bool) {
-  const starIcon = document.createElement('img');
-  const stars = document.querySelectorAll('.star');
-  if (!bool) {
-    starIcon.src = './data/img/star.svg';
-  } else {
-    starIcon.src = './data/img/star-win.svg';
-  }
-  starIcon.classList.add('star');
-  if (stars.length === 8) {
-    document.querySelectorAll('.star')[0].remove();
-  }
-  document.querySelector('.stars').append(starIcon);
-}
 
 export function resetGame() {
   gameStarted = false;

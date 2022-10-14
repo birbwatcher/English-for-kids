@@ -1,10 +1,12 @@
 import cards from '../data/cards.js';
 // eslint-disable-next-line import/no-cycle
-import { gameToggle, checkToggle, arrayOfcards, BaseCard } from './script.js';
+import {
+  gameToggle, checkToggle, arrayOfcards, BaseCard,
+} from './script.js';
 // eslint-disable-next-line import/no-cycle
 import { resetGame } from './game.js';
 
-// localStorage.clear()
+// eslint-disable-next-line import/no-mutable-exports
 let scoreArray = [];
 if (localStorage.length !== 0) {
   scoreArray = JSON.parse(localStorage.getItem('0')).slice(0);
@@ -17,17 +19,15 @@ export function tableSort() {
   const rowsArray = Array.from(tbody.rows);
   let asc = true;
   table.addEventListener('click', (e) => {
-    let index = e.target.cellIndex;
+    const index = e.target.cellIndex;
     if (e.target.nodeName !== 'TH') return;
     function compare(row1, row2) {
       const rowData1 = row1.cells[index].innerHTML;
       const rowData2 = row2.cells[index].innerHTML;
       if (!Number(row1.cells[index].innerHTML)) {
         return rowData1 > rowData2 ? 1 : -1;
-      } 
-      if (Number(row1.cells[index].innerHTML)) {
-        return rowData1 - rowData2;
       }
+      return rowData1 - rowData2;
     }
 
     function compareDesc(row1, row2) {
@@ -35,10 +35,8 @@ export function tableSort() {
       const rowData2 = row2.cells[index].innerHTML;
       if (!Number(row1.cells[index].innerHTML)) {
         return rowData1 > rowData2 ? -1 : 1;
-      } 
-      if (Number(row1.cells[index].innerHTML)) {
-        return rowData2 - rowData1;
       }
+      return rowData2 - rowData1;
     }
     if (asc === true) {
       asc = false;
@@ -46,17 +44,28 @@ export function tableSort() {
     } else if (asc === false) {
       asc = true;
       rowsArray.sort(compareDesc);
-    } 
+    }
 
     table.removeChild(tbody);
-    rowsArray.forEach(item => tbody.appendChild(item));
+    rowsArray.forEach((item) => tbody.appendChild(item));
     table.appendChild(tbody);
-});
-  
+  });
   if (localStorage.length === 0) {
     localStorage.setItem('0', JSON.stringify(scoreArray));
   }
   // console.log(JSON.parse(localStorage.getItem('0')))
+}
+
+class ScoreItem {
+  constructor(word, translation, category) {
+    this.word = word;
+    this.translation = translation;
+    this.score = 0;
+    this.fail = 0;
+    this.clicks = 0;
+    this.success = 0;
+    this.category = category;
+  }
 }
 
 function createScoreItems() {
@@ -66,6 +75,19 @@ function createScoreItems() {
       scoreArray.push(score);
     });
   }
+}
+
+export function findObject(word, index) {
+  let x;
+  for (let i = 1; i < cards.length; i++) {
+    // eslint-disable-next-line no-loop-func
+    cards[i].forEach((item) => {
+      if (item.word === word) {
+        x = new BaseCard(item.word, item.translation, item.image, item.audioSrc, index);
+      }
+    });
+  }
+  return x;
 }
 
 export default function createScore() {
@@ -113,12 +135,12 @@ export default function createScore() {
     const cell7 = document.createElement('td');
 
     function successScore() {
-      if (cell3.innerHTML == 0 && cell4.innerHTML == 0) {
+      if (Number(cell3.innerHTML) === 0 && Number(cell4.innerHTML) === 0) {
         return '0%';
       }
       return `${Math.round((Number(item.score) * 100) / (Number(item.score) + Number(item.fail)))}%`;
     }
-    
+
     cell1.innerHTML = item.word;
     cell2.innerHTML = item.translation;
     cell3.innerHTML = item.score;
@@ -136,7 +158,6 @@ export default function createScore() {
     table.append(row);
   });
   tableSort();
-
 
   resetRepeatPlate.addEventListener('click', (e) => {
     if (e.target.classList.contains('repeat')) {
@@ -165,18 +186,6 @@ export default function createScore() {
   });
 }
 
-class ScoreItem {
-  constructor(word, translation, category) {
-    this.word = word;
-    this.translation = translation;
-    this.score = 0;
-    this.fail = 0;
-    this.clicks = 0;
-    this.success = 0;
-    this.category = category;
-  }
-}
-
 if (localStorage.length === 0) {
   createScoreItems();
 }
@@ -191,17 +200,4 @@ export function findWord(word) {
   return x;
 }
 
-
-export function findObject(word, index) {
-  let x;
-  for (let i = 1; i < cards.length; i++) {
-    cards[i].forEach((item) => {
-      if (item.word === word) {
-        x = new BaseCard(item.word, item.translation, item.image, item.audioSrc, index);
-      }
-    })
-  }
-  return x;
-}
-
-export { scoreArray }
+export { scoreArray };
