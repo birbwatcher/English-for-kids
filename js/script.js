@@ -17,7 +17,6 @@ export function checkToggle() {
   gameInit();
   const trainSwitch = document.querySelector('.switch');
   const english = document.querySelectorAll('.english');
-  // trainSwitch.classList.toggle('switch-on');console.log(gameToggle.checked);
   if (gameToggle.checked) {
     trainSwitch.innerHTML = 'Train';
     trainSwitch.classList.add('switch-on');
@@ -30,7 +29,6 @@ export function checkToggle() {
     }
   }
   if (!gameToggle.checked) {
-    // console.log('helo');
     resetGame();
     trainSwitch.innerHTML = 'Play';
     trainSwitch.classList.remove('switch-on');
@@ -63,20 +61,17 @@ export class BaseCard {
   }
 
   getSound() {
-    // if (!gameToggle.checked) {
     new Audio(this.audioSrc).play();
-    // }
   }
 }
 
-// const categories = [];
 const arrayOfcards = [];
 
 function createItems(cardsSet) {
   gameToggle.checked = false;
   resetGame();
   arrayOfcards.length = 0;
-  document.querySelector('.row').innerHTML = '';
+  document.querySelector('.cards').innerHTML = '';
   cards[cardsSet].forEach((item, index) => {
     const card = new BaseCard(item.word, item.translation, item.image, item.audioSrc, index);
     arrayOfcards.push(card);

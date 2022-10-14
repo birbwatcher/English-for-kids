@@ -4,8 +4,6 @@ import { cardsGrid } from './script.js';
 export default function createCard(cardImage, title, index, translation) {
   const col = document.createElement('div');
   col.classList.add('col', 'col-sm-6', 'col-lg-4', 'col-xl-3');
-  // let card = document.createElement('div');
-  // card.classList.add('card');
 
   const front = document.createElement('div');
   front.classList.add('card', 'front');
@@ -13,7 +11,6 @@ export default function createCard(cardImage, title, index, translation) {
   const back = document.createElement('div');
   back.classList.add('card', 'back');
 
-  // col.id = index;
   front.id = index;
   const image = document.createElement('img');
   image.classList.add('card-img-top');
@@ -46,13 +43,11 @@ export default function createCard(cardImage, title, index, translation) {
 
   col.append(front);
   col.append(back);
-  // col.append(card);
 }
 
 export function createCategory(cardImage, title, index) {
   const col = document.createElement('div');
   col.classList.add('col', 'col-sm-6', 'col-lg-4', 'col-xl-3');
-  // col.id = index;
   col.setAttribute('data', index);
 
   const card = document.createElement('div');

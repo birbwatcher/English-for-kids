@@ -50,8 +50,6 @@ function parseNumber(number) {
   return Number(number.replace(/[^0-9.-]+/g, ''));
 }
 
-
-
 cardsGrid.addEventListener('click', (e) => {
   function getIndex() {
     if (e.target.parentNode.id) {
@@ -61,8 +59,7 @@ cardsGrid.addEventListener('click', (e) => {
   };
 
   if (gameStarted) {
-    // const unsolvedCards = document.querySelectorAll('.col');
-    let index = getIndex();
+    const index = getIndex();
     if (arrayOfcards[index].word !== card.word) {
       if (!e.target.classList.contains('solved')) {
         findWord(card.word).fail += 1;
@@ -103,9 +100,6 @@ cardsGrid.addEventListener('click', (e) => {
     }
   }
 });
-
-
-
 
 export function resetGame() {
   gameStarted = false;

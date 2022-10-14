@@ -54,7 +54,7 @@ export function tableSort() {
 
 
 export default function createScore() {
-  document.querySelector('.row').innerHTML = `<div class="table-container"><table class="table table-hover">
+  document.querySelector('.cards').innerHTML = `<div class="table-container"><table class="table table-hover">
   <thead>
     <tr class="table-dark">
       <th scope="col">English</th>
