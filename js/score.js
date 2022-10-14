@@ -52,7 +52,6 @@ export function tableSort() {
 });
 }
 
-
 export default function createScore() {
   document.querySelector('.cards').innerHTML = `<div class="table-container"><table class="table table-hover">
   <thead>
@@ -137,11 +136,11 @@ export default function createScore() {
       }
       gameToggle.checked = false;
       resetGame();
-      document.querySelector('.row').innerHTML = '';
+      document.querySelector('.cards').innerHTML = '';
       arrayOfcards.forEach((item) => item.getCard());
       checkToggle();
       if (arrayOfcards.length === 0) {
-        document.querySelector('.row').innerHTML = '<div class="d-flex justify-content-center no-words"><h2>There is no difficult words ;)</h2></div>';
+        document.querySelector('.cards').innerHTML = '<div class="d-flex justify-content-center no-words"><h2>There is no difficult words ;)</h2></div>';
       }
     }
     if (e.target.classList.contains('reset')) {

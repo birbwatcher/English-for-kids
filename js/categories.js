@@ -30,7 +30,8 @@ class Category {
 export default function createCategories() {
   gameToggle.checked = false;
   resetGame();
-  document.querySelector('.row').innerHTML = '';
+  document.querySelector('.cards').innerHTML = '';
+  document.querySelector('.stars').innerHTML = '';
   const categories = [];
   const categoryImages = [];
   for (let i = 1; i < cards.length; i++) {

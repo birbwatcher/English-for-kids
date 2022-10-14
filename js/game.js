@@ -65,6 +65,7 @@ cardsGrid.addEventListener('click', (e) => {
         findWord(card.word).fail += 1;
         resultWindow.mistakes += 1;
         new Audio('./data/audio/error.mp3').play();
+        star(false);
       }
     }
     if (arrayOfcards[index].word === card.word) {
@@ -78,6 +79,7 @@ cardsGrid.addEventListener('click', (e) => {
       cardsCount -= 1;
       findWord(card.word).score += 1;
       resultWindow.rightAns += 1;
+      star(true);
       card = gameArray.pop();
       new Audio('./data/audio/correct.mp3').play();
       progress.style.width = `${parseNumber(progress.style.width) + 12.5}%`;
@@ -100,6 +102,21 @@ cardsGrid.addEventListener('click', (e) => {
     }
   }
 });
+
+function star(bool) {
+  const starIcon = document.createElement('img');
+  const stars = document.querySelectorAll('.star');
+  if (!bool) {
+    starIcon.src = './data/img/star.svg';
+  } else {
+    starIcon.src = './data/img/star-win.svg';
+  }
+  starIcon.classList.add('star');
+  if (stars.length === 8) {
+    document.querySelectorAll('.star')[0].remove();
+  }
+  document.querySelector('.stars').append(starIcon);
+}
 
 export function resetGame() {
   gameStarted = false;

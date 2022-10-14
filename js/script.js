@@ -72,6 +72,7 @@ function createItems(cardsSet) {
   resetGame();
   arrayOfcards.length = 0;
   document.querySelector('.cards').innerHTML = '';
+  document.querySelector('.stars').innerHTML = '';
   cards[cardsSet].forEach((item, index) => {
     const card = new BaseCard(item.word, item.translation, item.image, item.audioSrc, index);
     arrayOfcards.push(card);
