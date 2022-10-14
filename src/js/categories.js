@@ -1,4 +1,4 @@
-import cards from '../data/cards.js';
+import cards from '../../data/cards.js';
 // eslint-disable-next-line import/no-cycle
 import { gameToggle, checkToggle } from './script.js';
 // eslint-disable-next-line import/no-cycle

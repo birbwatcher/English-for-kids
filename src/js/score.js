@@ -1,4 +1,4 @@
-import cards from '../data/cards.js';
+import cards from '../../data/cards.js';
 // eslint-disable-next-line import/no-cycle
 import {
   gameToggle, checkToggle, arrayOfcards, BaseCard,
@@ -53,7 +53,6 @@ export function tableSort() {
   if (localStorage.length === 0) {
     localStorage.setItem('0', JSON.stringify(scoreArray));
   }
-  // console.log(JSON.parse(localStorage.getItem('0')))
 }
 
 class ScoreItem {
