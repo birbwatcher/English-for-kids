@@ -6,7 +6,6 @@ import { findWord } from './score.js';
 // eslint-disable-next-line import/no-cycle
 import createCategories from './categories.js';
 
-
 let gameArray = [];
 let gameStarted = false;
 let card;
