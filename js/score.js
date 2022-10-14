@@ -1,10 +1,9 @@
 import cards from '../data/cards.js';
 // eslint-disable-next-line import/no-cycle
-import { gameToggle } from './script.js';
+import { gameToggle, checkToggle, arrayOfcards, BaseCard } from './script.js';
 // eslint-disable-next-line import/no-cycle
 import { resetGame } from './game.js';
-// eslint-disable-next-line import/no-cycle
-import { checkToggle } from './script.js';
+
 
 const scoreArray = [];
 
@@ -17,7 +16,6 @@ export function tableSort() {
   table.addEventListener('click', (e) => {
     let index = e.target.cellIndex;
     if (e.target.nodeName !== 'TH') return;
-    
     function compare(row1, row2) {
       const rowData1 = row1.cells[index].innerHTML;
       const rowData2 = row2.cells[index].innerHTML;
@@ -74,6 +72,19 @@ export default function createScore() {
   gameToggle.checked = false;
   resetGame();
 
+  const tableContainer = document.querySelector('.table-container');
+  const resetRepeatPlate = document.createElement('div');
+  resetRepeatPlate.classList.add('reset-repeat-plate', 'd-inline-flex', 'justify-content-center');
+  tableContainer.append(resetRepeatPlate);
+  const btnRepeat = document.createElement('button');
+  const btnReset = document.createElement('button');
+  resetRepeatPlate.append(btnRepeat);
+  resetRepeatPlate.append(btnReset);
+  btnRepeat.classList.add('btn', 'btn-primary', 'btn-lg', 'repeat');
+  btnReset.classList.add('btn', 'btn-primary', 'btn-lg', 'reset');
+  btnRepeat.innerHTML = 'Repeat difficult words';
+  btnReset.innerHTML = 'Reset';
+
   scoreArray.forEach((item) => {
     const table = document.querySelector('tbody');
     const row = document.createElement('tr');
@@ -104,16 +115,38 @@ export default function createScore() {
 
     function successScore() {
       if (cell3.innerHTML == 0 && cell4.innerHTML == 0) {
-        return `${0}%`;
+        return '0%';
       }
       if (cell4.innerHTML == 0) {
         return `${Math.round((Number(item.score) / 1) * 100)}%`;
       }
       return `${Math.round((Number(item.score) / Number(item.fail)) * 100)}%`;
-     }
+    }
   });
   tableSort();
-  
+
+
+  resetRepeatPlate.addEventListener('click', (e) => {
+    if (e.target.classList.contains('repeat')) {
+      const repeatArray = scoreArray.slice(0).sort((a, b) => a.fail < b.fail ? 1 : -1);
+      arrayOfcards.length = 0;
+      for (let i = 0; i < 8; i++) {
+        if (repeatArray[i].fail !== 0) {
+          console.log(repeatArray[i].word)
+          arrayOfcards.push(findObject(repeatArray[i].word, i));
+        }
+      }
+      console.log(arrayOfcards);
+      gameToggle.checked = false;
+      resetGame();
+      document.querySelector('.row').innerHTML = '';
+      arrayOfcards.forEach((item) => item.getCard());
+      checkToggle();
+    }
+    if (e.target.classList.contains('reset')) {
+      console.log('reset');
+    }
+  });
 }
 
 class ScoreItem {
@@ -142,6 +175,19 @@ export function findWord(word) {
       x = item;
     }
   });
+  return x;
+}
+
+
+export function findObject(word, index) {
+  let x;
+  for (let i = 1; i < cards.length; i++) {
+    cards[i].forEach((item) => {
+      if (item.word === word) {
+        x = new BaseCard(item.word, item.translation, item.image, item.audioSrc, index);
+      }
+    })
+  }
   return x;
 }
 

@@ -45,7 +45,7 @@ gameToggle.onclick = function toggle() {
   checkToggle();
 };
 
-class BaseCard {
+export class BaseCard {
   constructor(word, translation, image, audioSrc, id) {
     this.word = word;
     this.translation = translation;
@@ -118,7 +118,6 @@ cardsGrid.addEventListener('mouseout', (e) => {
       cardsBackItems[index.id].classList.remove('unflipped');
     }
   }
-
 });
 
 offcanvasBody.addEventListener('click', (e) => {
