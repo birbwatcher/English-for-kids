@@ -53,7 +53,6 @@ hr {
 .navbar {
     .container {
         width: 1200px;
-        // justify-content: space-between;
     }
     .navbar-header {
         width: 100%;
@@ -66,8 +65,6 @@ hr {
 }
 
 .card {
-    // width: 256px;
-    // position: relative;
     min-width: 256px;
     transition: all 0.5s ease;
     &:hover {
@@ -95,8 +92,6 @@ hr {
         }
     }
     &.front {
-        // display: none;
-        // transform: rotateY(0deg);
         backface-visibility: hidden;
         &.flipped {
         transform: rotateY(180deg);
@@ -108,8 +103,6 @@ hr {
         position: absolute;
         margin-right: calc(var(--bs-gutter-x) * .5);
         margin-left: calc(var(--bs-gutter-x) * .5);
-
-        // display: none;
         transform: rotateY(180deg);
         transition: 1s;
         padding-bottom: 30px;
