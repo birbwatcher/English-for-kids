@@ -13,6 +13,7 @@ if (localStorage.length !== 0) {
 }
 
 export function tableSort() {
+  document.querySelector('h1').innerHTML = 'Score';
   checkToggle();
   const table = document.querySelector('table');
   const tbody = document.querySelector('tbody');

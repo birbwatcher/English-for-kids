@@ -78,6 +78,7 @@ function createItems(cardsSet) {
   });
   arrayOfcards.forEach((item) => item.getCard());
   checkToggle();
+  document.querySelector('h1').innerHTML = cards[0][cardsSet - 1];
 }
 
 createCategories();

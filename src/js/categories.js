@@ -28,6 +28,7 @@ class Category {
 }
 
 export default function createCategories() {
+  document.querySelector('h1').innerHTML = 'Train & Play';
   gameToggle.checked = false;
   resetGame();
   document.querySelector('.cards').innerHTML = '';
