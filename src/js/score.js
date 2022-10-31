@@ -8,7 +8,7 @@ import { resetGame } from './game.js';
 
 // eslint-disable-next-line import/no-mutable-exports
 let scoreArray = [];
-if (localStorage.length !== 0) {
+if (localStorage.getItem('0')) {
   scoreArray = JSON.parse(localStorage.getItem('0')).slice(0);
 }
 
