@@ -100,6 +100,11 @@ cardsGrid.addEventListener('click', (e) => {
   if (e.target.parentElement.classList.contains('category')) {
     const index = Number(e.target.parentNode.parentNode.getAttribute('data')) + 1;
     createItems(index);
+    const menuItems = document.querySelectorAll('.nav-link');
+    menuItems.forEach((item) => {
+      item.classList.remove('active');
+    });
+    menuItems[index + 1].classList.add('active');
   }
 });
 
