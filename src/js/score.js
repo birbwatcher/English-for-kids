@@ -52,9 +52,7 @@ export function tableSort() {
     rowsArray.forEach((item) => tbody.appendChild(item));
     table.appendChild(tbody);
   });
-  if (localStorage.length === 0) {
-    localStorage.setItem('0', JSON.stringify(scoreArray));
-  }
+  localStorage.setItem('0', JSON.stringify(scoreArray));
 }
 
 class ScoreItem {
@@ -187,7 +185,7 @@ export default function createScore() {
   });
 }
 
-if (localStorage.length === 0) {
+if (!localStorage.getItem('0')) {
   createScoreItems();
 }
 
