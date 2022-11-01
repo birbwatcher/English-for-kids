@@ -4,7 +4,7 @@ import checkToggle, { gameToggle } from './toggle.js';
 // eslint-disable-next-line import/no-cycle
 import { resetGame } from './game.js';
 // eslint-disable-next-line import/no-cycle
-import { createCategory, createOffcanvasMenu } from './createCard.js';
+import { createCategory, createOffcanvasMenu } from './createCategory.js';
 
 class Category {
   constructor(name, id, image) {

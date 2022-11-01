@@ -1,56 +1,15 @@
-import cards from '../../data/cards.js';
 // eslint-disable-next-line import/no-cycle
 import createCategories from './categories.js';
 // eslint-disable-next-line import/no-cycle
 import { resetGame } from './game.js';
 // eslint-disable-next-line import/no-cycle
-import createCard from './createCard.js';
-// eslint-disable-next-line import/no-cycle
 import createScore, { findWord } from './score.js';
 // eslint-disable-next-line import/no-cycle
 import checkToggle, { gameToggle } from './toggle.js';
+import createItems, { arrayOfcards } from './arrays.js';
 
 const cardsGrid = document.querySelector('.cards');
 const offcanvasBody = document.querySelector('.offcanvas-body');
-
-export class BaseCard {
-  constructor(word, translation, image, audioSrc, id) {
-    this.word = word;
-    this.translation = translation;
-    this.image = image;
-    this.audioSrc = `./data/${audioSrc}`;
-    this.id = id;
-  }
-
-  getWord() {
-    return this.word;
-  }
-
-  getCard() {
-    createCard(this.image, this.word, this.id, this.translation);
-  }
-
-  getSound() {
-    new Audio(this.audioSrc).play();
-  }
-}
-
-const arrayOfcards = [];
-
-function createItems(cardsSet) {
-  gameToggle.checked = false;
-  resetGame();
-  arrayOfcards.length = 0;
-  document.querySelector('.cards').innerHTML = '';
-  document.querySelector('.stars').innerHTML = '';
-  cards[cardsSet].forEach((item, index) => {
-    const card = new BaseCard(item.word, item.translation, item.image, item.audioSrc, index);
-    arrayOfcards.push(card);
-  });
-  arrayOfcards.forEach((item) => item.getCard());
-  checkToggle();
-  document.querySelector('h1').innerHTML = cards[0][cardsSet - 1];
-}
 
 createCategories();
 
@@ -72,6 +31,9 @@ cardsGrid.addEventListener('click', (e) => {
   if (e.target.parentElement.classList.contains('category')) {
     const index = Number(e.target.parentNode.parentNode.getAttribute('data')) + 1;
     createItems(index);
+    gameToggle.checked = false;
+    resetGame();
+    checkToggle();
     const menuItems = document.querySelectorAll('.nav-link');
     menuItems.forEach((item) => {
       item.classList.remove('active');
@@ -102,6 +64,9 @@ offcanvasBody.addEventListener('click', (e) => {
     }
     if (categoryId > 0) {
       createItems(categoryId);
+      gameToggle.checked = false;
+      resetGame();
+      checkToggle();
     }
     if (categoryId === 0) {
       createCategories();
@@ -109,4 +74,3 @@ offcanvasBody.addEventListener('click', (e) => {
   }
 });
 export { cardsGrid };
-export { arrayOfcards };
