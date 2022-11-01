@@ -96,6 +96,12 @@ cardsGrid.addEventListener('click', (e) => {
       new Audio('./data/audio/correct.mp3').play();
       progress.style.width = `${parseNumber(progress.style.width) + 12.5}%`;
       if (cardsCount === 0) {
+        document.querySelector('.play').classList.add('hidden');
+        document.querySelector('.progress').classList.add('hidden');
+        document.querySelector('.form-check-input').checked = false;
+        gameStarted = false;
+        document.querySelector('.form-check-input').innerHTML = 'Play';
+        document.querySelector('.switch').classList.remove('switch-on');
         myModal.show();
         if (resultWindow.mistakes === 0) {
           document.querySelector('.result-img').src = './data/img/success.jpg';
