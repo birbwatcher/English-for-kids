@@ -1,6 +1,8 @@
 // eslint-disable-next-line import/no-cycle
-import { findWord, scoreArray } from './score.js';
 import { arrayOfcards } from './arrays.js';
+// eslint-disable-next-line import/no-cycle
+import { findWord, scoreArray } from './score.js';
+// eslint-disable-next-line import/no-cycle
 import createCategories from './categories.js';
 
 let gameArray = [];
