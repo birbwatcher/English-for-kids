@@ -1,8 +1,10 @@
 import cards from '../../data/cards.js';
 // eslint-disable-next-line import/no-cycle
 import {
-  gameToggle, checkToggle, arrayOfcards, BaseCard,
+  arrayOfcards, BaseCard,
 } from './script.js';
+// eslint-disable-next-line import/no-cycle
+import checkToggle, { gameToggle } from './toggle.js';
 // eslint-disable-next-line import/no-cycle
 import { resetGame } from './game.js';
 

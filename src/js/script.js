@@ -2,45 +2,16 @@ import cards from '../../data/cards.js';
 // eslint-disable-next-line import/no-cycle
 import createCategories from './categories.js';
 // eslint-disable-next-line import/no-cycle
-import gameInit, { resetGame } from './game.js';
+import { resetGame } from './game.js';
 // eslint-disable-next-line import/no-cycle
 import createCard from './createCard.js';
 // eslint-disable-next-line import/no-cycle
 import createScore, { findWord } from './score.js';
+// eslint-disable-next-line import/no-cycle
+import checkToggle, { gameToggle } from './toggle.js';
 
 const cardsGrid = document.querySelector('.cards');
 const offcanvasBody = document.querySelector('.offcanvas-body');
-const gameToggle = document.querySelector('.form-check-input');
-
-export function checkToggle() {
-  gameInit();
-  const trainSwitch = document.querySelector('.switch');
-  const english = document.querySelectorAll('.english');
-  if (gameToggle.checked) {
-    trainSwitch.innerHTML = 'Train';
-    trainSwitch.classList.add('switch-on');
-    english.forEach((item) => item.classList.add('hidden'));
-    document.querySelectorAll('.front').forEach((item) => item.classList.remove('flipped'));
-    document.querySelectorAll('.back').forEach((item) => item.classList.remove('unflipped'));
-    if (document.querySelectorAll('.category').length === 0 && document.querySelectorAll('table').length === 0 && !document.querySelector('.no-words')) {
-      document.querySelector('.play').classList.remove('hidden');
-      document.querySelector('.progress').classList.remove('hidden');
-    }
-  }
-  if (!gameToggle.checked) {
-    resetGame();
-    trainSwitch.innerHTML = 'Play';
-    trainSwitch.classList.remove('switch-on');
-    english.forEach((item) => item.classList.remove('hidden'));
-    document.querySelector('.play').classList.add('hidden');
-    document.querySelector('.progress').classList.add('hidden');
-    document.querySelector('.play').innerHTML = 'Play';
-  }
-}
-
-gameToggle.onclick = function toggle() {
-  checkToggle();
-};
 
 export class BaseCard {
   constructor(word, translation, image, audioSrc, id) {
@@ -138,5 +109,4 @@ offcanvasBody.addEventListener('click', (e) => {
   }
 });
 export { cardsGrid };
-export { gameToggle };
 export { arrayOfcards };
