@@ -1,10 +1,6 @@
-// eslint-disable-next-line import/no-cycle
 import createCategories from './categories.js';
-// eslint-disable-next-line import/no-cycle
 import { resetGame } from './game.js';
-// eslint-disable-next-line import/no-cycle
 import createScore, { findWord } from './score.js';
-// eslint-disable-next-line import/no-cycle
 import checkToggle, { gameToggle } from './toggle.js';
 import createItems, { arrayOfcards } from './arrays.js';
 
@@ -12,6 +8,9 @@ const cardsGrid = document.querySelector('.cards');
 const offcanvasBody = document.querySelector('.offcanvas-body');
 
 createCategories();
+gameToggle.checked = false;
+resetGame();
+checkToggle();
 
 cardsGrid.addEventListener('click', (e) => {
   const cardsFrontItems = document.querySelectorAll('.front');
@@ -70,7 +69,9 @@ offcanvasBody.addEventListener('click', (e) => {
     }
     if (categoryId === 0) {
       createCategories();
+      gameToggle.checked = false;
+      resetGame();
+      checkToggle();
     }
   }
 });
-export { cardsGrid };

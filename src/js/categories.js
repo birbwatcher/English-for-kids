@@ -1,9 +1,4 @@
 import cards from '../../data/cards.js';
-// eslint-disable-next-line import/no-cycle
-import checkToggle, { gameToggle } from './toggle.js';
-// eslint-disable-next-line import/no-cycle
-import { resetGame } from './game.js';
-// eslint-disable-next-line import/no-cycle
 import { createCategory, createOffcanvasMenu } from './createCategory.js';
 
 class Category {
@@ -29,8 +24,6 @@ class Category {
 
 export default function createCategories() {
   document.querySelector('h1').innerHTML = 'Train & Play';
-  gameToggle.checked = false;
-  resetGame();
   document.querySelector('.cards').innerHTML = '';
   document.querySelector('.stars').innerHTML = '';
   const categories = [];
@@ -47,5 +40,4 @@ export default function createCategories() {
   if (document.querySelectorAll('.nav-item').length === 2) {
     categories.forEach((itm) => createOffcanvasMenu(itm.getCategoryName(), itm.getCategoryNum()));
   }
-  checkToggle();
 }
