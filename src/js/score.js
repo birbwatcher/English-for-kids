@@ -11,6 +11,31 @@ if (localStorage.getItem('0')) {
   scoreArray = JSON.parse(localStorage.getItem('0')).slice(0);
 }
 
+class ScoreItem {
+  constructor(word, translation, category) {
+    this.word = word;
+    this.translation = translation;
+    this.score = 0;
+    this.fail = 0;
+    this.clicks = 0;
+    this.success = 0;
+    this.category = category;
+  }
+}
+
+function createScoreItems() {
+  for (let i = 1; i < cards.length; i++) {
+    cards[i].forEach((item) => {
+      const score = new ScoreItem(item.word, item.translation, cards[0][i - 1]);
+      scoreArray.push(score);
+    });
+  }
+}
+
+if (!localStorage.getItem('0')) {
+  createScoreItems();
+}
+
 export function tableSort() {
   document.querySelector('h1').innerHTML = 'Score';
   document.querySelector('.stars').innerHTML = '';
@@ -52,27 +77,6 @@ export function tableSort() {
     table.appendChild(tbody);
   });
   localStorage.setItem('0', JSON.stringify(scoreArray));
-}
-
-class ScoreItem {
-  constructor(word, translation, category) {
-    this.word = word;
-    this.translation = translation;
-    this.score = 0;
-    this.fail = 0;
-    this.clicks = 0;
-    this.success = 0;
-    this.category = category;
-  }
-}
-
-function createScoreItems() {
-  for (let i = 1; i < cards.length; i++) {
-    cards[i].forEach((item) => {
-      const score = new ScoreItem(item.word, item.translation, cards[0][i - 1]);
-      scoreArray.push(score);
-    });
-  }
 }
 
 export function findObject(word, index) {
@@ -182,10 +186,6 @@ export default function createScore() {
       createScore();
     }
   });
-}
-
-if (!localStorage.getItem('0')) {
-  createScoreItems();
 }
 
 export function findWord(word) {
