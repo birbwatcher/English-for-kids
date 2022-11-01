@@ -5,10 +5,9 @@ import checkToggle, { gameToggle } from './toggle.js';
 // eslint-disable-next-line import/no-cycle
 import { resetGame } from './game.js';
 
-// eslint-disable-next-line import/no-mutable-exports
-let scoreArray = [];
+const scoreArray = [];
 if (localStorage.getItem('0')) {
-  scoreArray = JSON.parse(localStorage.getItem('0')).slice(0);
+  scoreArray.push(JSON.parse(localStorage.getItem('0')).slice(0).flat());
 }
 
 class ScoreItem {
