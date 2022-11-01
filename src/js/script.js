@@ -6,7 +6,6 @@ import createItems, { arrayOfcards } from './arrays.js';
 
 const cardsGrid = document.querySelector('.cards');
 const offcanvasBody = document.querySelector('.offcanvas-body');
-
 createCategories();
 gameToggle.checked = false;
 resetGame();

@@ -69,8 +69,7 @@ cardsGrid.addEventListener('click', (e) => {
     }
     return Number(e.target.id);
   }
-
-  if (gameStarted) {
+  if (gameStarted && e.target !== document.querySelector('.row.cards')) {
     const index = getIndex();
     if (arrayOfcards[index].word !== card.word) {
       if (!e.target.classList.contains('solved')) {
