@@ -2,13 +2,8 @@ import cards from '../../data/cards.js';
 import { BaseCard, arrayOfcards } from './arrays.js';
 // eslint-disable-next-line import/no-cycle
 import checkToggle, { gameToggle } from './toggle.js';
-// eslint-disable-next-line import/no-cycle
-import { resetGame } from './game.js';
 
-const scoreArray = [];
-if (localStorage.getItem('0')) {
-  scoreArray.push(JSON.parse(localStorage.getItem('0')).slice(0).flat());
-}
+const scoreArray = localStorage.getItem('0') ? JSON.parse(localStorage.getItem('0')).slice(0) : [];
 
 class ScoreItem {
   constructor(word, translation, category) {
@@ -108,7 +103,7 @@ export default function createScore() {
   </tbody>
 </table></div>`;
   gameToggle.checked = false;
-  resetGame();
+  // resetGame();
 
   const tableContainer = document.querySelector('.table-container');
   const resetRepeatPlate = document.createElement('div');
@@ -170,7 +165,7 @@ export default function createScore() {
         }
       }
       gameToggle.checked = false;
-      resetGame();
+      // resetGame();
       document.querySelector('.cards').innerHTML = '';
       arrayOfcards.forEach((item) => item.getCard());
       checkToggle();

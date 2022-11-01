@@ -59,6 +59,7 @@ offcanvasBody.addEventListener('click', (e) => {
     e.target.classList.add('active');
     const categoryId = Number(e.target.getAttribute('data'));
     if (categoryId < 0) {
+      resetGame();
       createScore();
     }
     if (categoryId > 0) {
