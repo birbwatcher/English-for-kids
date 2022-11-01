@@ -26,6 +26,8 @@ export default function checkToggle() {
     document.querySelector('.play').classList.add('hidden');
     document.querySelector('.progress').classList.add('hidden');
     document.querySelector('.play').innerHTML = 'Play';
+    document.querySelectorAll('.solved').forEach((item) => item.classList.remove('solved'));
+    document.querySelector('.stars').innerHTML = '';
   }
 }
 
