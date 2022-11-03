@@ -1,7 +1,8 @@
 import cards from '../../data/cards.js';
 import { BaseCard, arrayOfcards } from './arrays.js';
-// eslint-disable-next-line import/no-cycle
-import checkToggle, { gameToggle } from './toggle.js';
+
+// import checkToggle from './toggle.js';
+// import { resetGame } from './game.js';
 
 const scoreArray = localStorage.getItem('0') ? JSON.parse(localStorage.getItem('0')).slice(0) : [];
 
@@ -33,7 +34,9 @@ if (!localStorage.getItem('0')) {
 export function tableSort() {
   document.querySelector('h1').innerHTML = 'Score';
   document.querySelector('.stars').innerHTML = '';
-  checkToggle();
+  document.querySelector('.progress').classList.add('hidden');
+  // document.querySelector('.col.game').classList.add('hidden');
+  // checkToggle();
   const table = document.querySelector('table');
   const tbody = document.querySelector('tbody');
   const rowsArray = Array.from(tbody.rows);
@@ -102,7 +105,7 @@ export default function createScore() {
   <tbody>
   </tbody>
 </table></div>`;
-  gameToggle.checked = false;
+  document.querySelector('.form-check-input').checked = false;
   // resetGame();
 
   const tableContainer = document.querySelector('.table-container');
@@ -164,11 +167,11 @@ export default function createScore() {
           arrayOfcards.push(findObject(repeatArray[i].word, i));
         }
       }
-      gameToggle.checked = false;
+      document.querySelector('.form-check-input').checked = false;
       // resetGame();
       document.querySelector('.cards').innerHTML = '';
       arrayOfcards.forEach((item) => item.getCard());
-      checkToggle();
+      // checkToggle();
       if (arrayOfcards.length === 0) {
         document.querySelector('.cards').innerHTML = '<div class="d-flex justify-content-center no-words"><h2>There is no difficult words ;)</h2></div>';
       }
