@@ -1,7 +1,6 @@
 import createCategories from './categories.js';
 import { resetGame, checkToggle, gameToggle } from './game.js';
 import createScore, { findWord } from './score.js';
-// import checkToggle, { gameToggle } from './toggle.js';
 import createItems, { arrayOfcards } from './arrays.js';
 
 const cardsGrid = document.querySelector('.cards');
@@ -30,7 +29,6 @@ cardsGrid.addEventListener('click', (e) => {
     const index = Number(e.target.parentNode.parentNode.getAttribute('data')) + 1;
     createItems(index);
     gameToggle.checked = false;
-    // resetGame();
     checkToggle();
     const menuItems = document.querySelectorAll('.nav-link');
     menuItems.forEach((item) => {

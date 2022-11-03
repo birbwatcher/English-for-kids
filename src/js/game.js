@@ -33,7 +33,6 @@ export function resetGame() {
 }
 
 export function gameStart() {
-
   document.querySelector('.play').innerHTML = 'Repeat word';
   gameStarted = true;
   card = gameArray.pop();
